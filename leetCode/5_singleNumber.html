@@ -24,7 +24,7 @@
     const sngleNumberTwo = function(nums) {
       // 先利用 sort() 排序，将相同的数字排列在一起
       nums = nums.sort();
-      for(let y=0; y<nums.length-1; y+=2) {
+      for(let y=0; y<nums.length; y+=2) {
         if(nums[y] !== "undefined") {
           if(nums[y] !== nums[y+1]){
             return nums[y]
@@ -32,7 +32,7 @@
         }
       }
     };
-    const abc = [1, 2, 10, 30, 1, 2, 30];
+    const abc = [1, 2, 3, 4, 10, 1, 2, 3, 10];
     console.log(sngleNumberTwo(abc));
 
     // 按位与 (&)
