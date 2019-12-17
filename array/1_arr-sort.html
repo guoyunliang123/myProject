@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+
+
+  <script>
+    // 数组排序
+    const arr = [20, 10, 7, 30, 70, 1, 4, 20];
+    const x = arr.sort(function(a, b) {
+      return a - b;
+    });
+    console.log(x);
+
+    // 数组多条件排序
+    const arr1 = [
+      {id: 10, age: 2}, 
+      {id: 5, age: 4}, 
+      {id: 6, age: 10}, 
+      {id: 9,age: 6}, 
+      {id: 2, age: 8}, 
+      {id: 10, age: 9}
+    ];
+    let y = arr1.sort(function(a, b) {
+      if(a.id == b.id) { // 如果 id 的值相等，按照 age 的大小降序
+        return b.age - a.age;
+      } else {
+        return a.id - b.id; // 如果 id 的值不相等，按照 id 的大小排序
+      }
+    });
+    console.log(y);
+
+    const arr2 = [
+      {name: 'Koro1'},
+      {name: 'Koro1'},
+      {name: 'OB'},
+      {name: 'Koro1'},
+      {name: 'OB'},
+      {name: 'OB'}
+    ];
+    let z = arr2.sort(function(a, b) {
+      if(a.name == 'Koro1') {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
+    console.log(z);
+  
+  </script>
+</body>
+</html>
