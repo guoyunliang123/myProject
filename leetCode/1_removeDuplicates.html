@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>删除数组重复项</title>
 </head>
 <body>
   
@@ -28,13 +28,15 @@
     // 匹配到则返回该字符出现位置的下标，未匹配到则返回 -1
 
     const removeDuplicates = function(nums) {
-      const a = nums.join(',');
-      for(let i=0; i<nums.length; i++) {
-        if(a.replace(nums[i], '').indexOf(arr[i]) > -1) {
-          return true;
+      nums.map((item, index) => {
+        for(let i=0; i<nums.length; i++) {
+          if(item === nums[i] && i !== index) {
+            nums.splice(i, 1);
+            i--;
+          }
         }
-      }
-      return false;
+      })
+      return nums.length;
     }
     const arr = [1, 2, 3, 2, 3];
     console.log(removeDuplicates(arr));

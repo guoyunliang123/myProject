@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>只出现一次的数</title>
+</head>
+<body>
+  
+
+  <script>
+    /* const sngleNumber = function(nums) {
+      for(let i=1; i<nums.length; i++) {
+        // 异或还满足交换律：a ^ b ^ c = a ^ c ^ b。
+        // 例如： 1 ^ 2 ^ 2 ^ 3 ^ 4 ^ 3 ^ 1 = 4
+        nums[0] = nums[0] ^ nums[i];
+      }
+      return nums[0];
+    };
+    const x = [1, 2, 3, 3, 2, 10, 20, 1, 20];
+    console.log(sngleNumber(x)); */
+
+    const sngleNumberTwo = function(nums) {
+      // 先利用 sort() 排序，将相同的数字排列在一起
+      nums = nums.sort();
+      for(let y=0; y<nums.length-1; y+=2) {
+        if(nums[y] !== "undefined") {
+          if(nums[y] !== nums[y+1]){
+            return nums[y]
+          }
+        }
+      }
+    };
+    const abc = [1, 2, 10, 30, 1, 2, 30];
+    console.log(sngleNumberTwo(abc));
+
+    // 按位与 (&)
+    const a = 2, b = 3;
+    console.log(a & b); // 2
+    // 解释：2的二进制为'10',3的二进制为'11',按位与：都为1时得1，出现0时得0，因此结果是'10',即2
+
+    // 按位或 (|)
+    const c = 6, d = 5;
+    console.log(c | d); // 7
+    // 解释：6='110',5='101',按位或，每一位二进制上进行或操作，得到'111',即7
+
+    // 按位异或 (^)
+    const e = 2, f = 4;
+    console.log(e ^ f); // 6
+    // 异或：相同为0，不同为1
+  
+  </script>
+</body>
+</html>
