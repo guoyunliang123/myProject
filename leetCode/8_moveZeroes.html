@@ -10,7 +10,7 @@
   
 
   <script>
-    const moveZeroes = function(nums) {
+    /* const moveZeroes = function(nums) {
       const arr = nums.filter( value => {
         return value > 0;
       });
@@ -22,7 +22,28 @@
       return arr;
     };
     const x = [0, 2, 0, 0, 0, 0, 1, 10, 0, 9];
-    console.log(moveZeroes(x));
+    console.log(moveZeroes(x)); */
+
+    // i 作为 index 用来遍历 nums 
+    // 找到非 0 元素赋值给 nums[j]
+    // 则在 for 循环结束时 nums[o] 至 nums[j] 为非零元素
+    // 即数组中 存在 j+1 个非零元素，然后用原本数组的长度 (i+1) 减去非零元素，剩下的赋值为 0 就可以
+    const moveZeroes = function(nums) {
+      let i = j = 0;
+      for(; i<nums.length; i++) {
+        if(nums[i] !== 0) {
+          nums[j] = nums[i];
+          j++;
+        }
+      }
+      for(; j<i; j++) {
+        nums[j]=0;
+      }
+      return nums;
+    }
+    const y = [0, 0, 1, 2, 0, 2, 0, 0, 2];
+    console.log(moveZeroes(y));
+
     /* const moveZeroes = function(nums) {
       for(let i=0; i<nums.length; i++) {
         if(nums[i] == 0){

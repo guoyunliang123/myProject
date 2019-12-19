@@ -10,7 +10,23 @@
   
 
   <script>
+    // 麻烦的方法
     const twoSun = function(nums, target) {
+      let arr = [];
+      for(let i=0; i<nums.length-1; i++){
+        for(let j=i+1; j<nums.length; j++) {
+          if(nums[i] + nums[j] == target) {
+            arr.push(i);
+            arr.push(j);
+          }
+        }
+      }
+      return arr;
+    }
+    const num = [1, 2, 3, 4];
+    console.log(twoSun(num, 7));
+
+    /* const twoSun = function(nums, target) {
       const comp = {};
       for(let i=0; i<nums.length; i++) {
         if(comp[target - nums[i]] >= 0) {
@@ -20,38 +36,7 @@
       }
     };
     const arr = [1, 2, 3, 4];
-    console.log(twoSun(arr, 7));
-
-    /* const twoSum = (nums, target) => {
-      let mapObj = {};
-      let res = [];
-      nums.forEach((e, i) => mapObj[e] = i);
-      for (let i = 0; i < nums.length; i++) {
-        let j = mapObj[targer - nums[i]];
-        if (j && j !== i) {
-          res = [i, j];
-          break;
-        }
-      }
-      return res;
-    }; */
-
-    const twoSum1 = (nums, target) => {
-      let map = new Map();
-      let res = [];
-      nums.forEach((e, i) => map.set(e, i)); 
-      for(let i=0; i<nums.length; i++) {
-        let j = map.get[target - nums[i]];
-        if(j && j !== i) {
-          res = [i, j];
-          break;
-        }
-      }
-      return res;
-    };
-    const arr1 = [1, 2, 3, 4];
-    console.log(twoSum1(arr1, 7));
-
+    console.log(twoSun(arr, 7)); */
 
   
   </script>
