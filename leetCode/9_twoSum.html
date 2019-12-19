@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>两数之和</title>
+</head>
+<body>
+  
+
+  <script>
+    const twoSun = function(nums, target) {
+      const comp = {};
+      for(let i=0; i<nums.length; i++) {
+        if(comp[target - nums[i]] >= 0) {
+          return [comp[target - nums[i]], i];
+        }
+        comp[nums[i]] = i;
+      }
+    };
+    const arr = [1, 2, 3, 4];
+    console.log(twoSun(arr, 7));
+
+    /* const twoSum = (nums, target) => {
+      let mapObj = {};
+      let res = [];
+      nums.forEach((e, i) => mapObj[e] = i);
+      for (let i = 0; i < nums.length; i++) {
+        let j = mapObj[targer - nums[i]];
+        if (j && j !== i) {
+          res = [i, j];
+          break;
+        }
+      }
+      return res;
+    }; */
+
+    const twoSum1 = (nums, target) => {
+      let map = new Map();
+      let res = [];
+      nums.forEach((e, i) => map.set(e, i)); 
+      for(let i=0; i<nums.length; i++) {
+        let j = map.get[target - nums[i]];
+        if(j && j !== i) {
+          res = [i, j];
+          break;
+        }
+      }
+      return res;
+    };
+    const arr1 = [1, 2, 3, 4];
+    console.log(twoSum1(arr1, 7));
+
+
+  
+  </script>
+</body>
+</html>

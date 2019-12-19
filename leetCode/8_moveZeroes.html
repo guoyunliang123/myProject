@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>移动零</title>
+</head>
+<body>
+  
+
+  <script>
+    const moveZeroes = function(nums) {
+      const arr = nums.filter( value => {
+        return value > 0;
+      });
+      for(let i=0; i<nums.length; i++) {
+        if(nums[i] === 0 ) {
+          arr.push(nums[i]);
+        }
+      }
+      return arr;
+    };
+    const x = [0, 2, 0, 0, 0, 0, 1, 10, 0, 9];
+    console.log(moveZeroes(x));
+    /* const moveZeroes = function(nums) {
+      for(let i=0; i<nums.length; i++) {
+        if(nums[i] == 0){
+          nums.push(nums[i]);
+          nums.splice(i, 1);
+        }
+      }
+      return nums;
+    };
+    const arr = [0, 0, 0, 1, 2, 0, 0, 9, 8, 0];
+    console.log(moveZeroes(arr)); */
+    
+  </script>
+</body>
+</html>

@@ -40,6 +40,13 @@
     }
     const arr = [1, 2, 3, 2, 3];
     console.log(removeDuplicates(arr));
+
+    // 利用 ES6 Set 去重  
+    const removeDuplicates = function(nums) {
+      return Array.from(new Set(nums))
+    };
+    const arr2 = [1, 2, 3, 4, 4, 3, 2, 1];
+    console.log(removeDuplicates(arr2));
   
   
   </script>
