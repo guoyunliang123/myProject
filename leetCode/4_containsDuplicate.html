@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>存在重复</title>
+</head>
+<body>
+  
+  <script>
+    /* const containsDuplicate = function(nums) {
+      nums.sort();
+      for(let i=0; i<nums.length; i++) {
+        if(nums[i] == nums[i+1]) {
+          return true;
+        }
+      };
+      return false;
+    };
+    const arr = [1, 2, 3];
+    console.log(containsDuplicate(arr)); */
+    
+    const containsDuplicate = function(nums) {
+      let set = new Set(nums);
+      return set.size !== nums.length;
+    };
+    const arr = [1, 2, 3, 3, 4];
+    console.log(containsDuplicate(arr));
+  </script>
+</body>
+</html>

@@ -9,7 +9,7 @@
 <body>
   
   <script>
-    /* const removeDuplicates = function(nums) {
+    const removeDuplicates = function(nums) {
       // 定义一个空数组用来存储结果
       let number = [];
       for(let i=0; i<nums.length; i++) {
@@ -21,13 +21,13 @@
       return number.length;
     };
     const arr = [1, 2, 3, 3, 2, 1]
-    console.log(removeDuplicates(arr)); */
+    console.log(removeDuplicates(arr));
 
     // indexOf
     // 参数1：需要匹配的字符  参数2(可选)：需要从哪里开始检索（从 0 - stringObject.length - 1）
     // 匹配到则返回该字符出现位置的下标，未匹配到则返回 -1
 
-    const removeDuplicates = function(nums) {
+   /*  const removeDuplicates = function(nums) {
       nums.map((item, index) => {
         for(let i=0; i<nums.length; i++) {
           if(item === nums[i] && i !== index) {
@@ -39,14 +39,14 @@
       return nums.length;
     }
     const arr = [1, 2, 3, 2, 3];
-    console.log(removeDuplicates(arr));
+    console.log(removeDuplicates(arr)); */
 
     // 利用 ES6 Set 去重  
-    const removeDuplicates = function(nums) {
+   /*  const removeDuplicates = function(nums) {
       return Array.from(new Set(nums))
     };
     const arr2 = [1, 2, 3, 4, 4, 3, 2, 1];
-    console.log(removeDuplicates(arr2));
+    console.log(removeDuplicates(arr2)); */
   
   
   </script>
