@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>合并两个有序数组</title>
+</head>
+<body>
+  
+
+  <script>
+    // 取数组 nums1 的前 m 项
+    // 取数组 nums2 的前 n 项
+    /* const marge = function(nums1, m, nums2, n) {
+      nums1.splice(m);
+      nums2.splice(n);
+      nums1.push(...nums2);
+      nums1.sort((a, b) => a -b);
+      return nums1;
+    };
+    const arr1 = [1, 2, 3, 0, 0, 0];
+    const arr2 = [2, 5, 6];
+    const m = 3;
+    const n = 3;
+    console.log(marge(arr1, m, arr2, n)); */
+  
+
+    const marge = function(nums1, m, nums2, n) {
+      let index = 0;
+      for(let i=m; i<m + n; i++) {
+        nums1[i] = nums2[index++];
+      }
+      nums1.sort((a, b) => a - b);
+      return nums1;
+    };
+    const arr1 = [1, 2, 3, 0, 0, 0];
+    const arr2 = [2, 5, 6];
+    const m = 3;
+    const n = 3;
+    console.log(marge(arr1, m, arr2, n));
+  </script>
+</body>
+</html>
