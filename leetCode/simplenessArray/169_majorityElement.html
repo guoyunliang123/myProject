@@ -13,7 +13,7 @@
     const majorityElement = function(nums) {
       const obj = {};
       const halfNum = nums.length / 2;
-      var mode;
+      let mode;
       if(nums.length == 1) return nums[0];
       // 拆解数组中的元素，赋值为对象的 key
       for(let i=0; i<nums.length; i++) {
