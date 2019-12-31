@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>多数元素</title>
+</head>
+<body>
+  
+
+  <script>
+    const majorityElement = function(nums) {
+      const obj = {};
+      const halfNum = nums.length / 2;
+      var mode;
+      if(nums.length == 1) return nums[0];
+      // 拆解数组中的元素，赋值为对象的 key
+      for(let i=0; i<nums.length; i++) {
+        // 遍历，若对象中存在该 key
+        if(obj[nums[i]]){
+          // 则对应的 value + 1
+          obj[nums[i]] += 1;
+          // 若该 key 对应的 value 大于数组元素个数的半数
+          if(obj[nums[i]] > halfNum) {
+            mode = nums[i];
+            // 则返回该 key 值
+            return mode;
+          }
+        } else {
+          // 若没有，添加 key，对应的 value 赋值为 1
+          obj[nums[i]] = 1;
+        }
+      }
+      return obj;
+    };
+    const arr = [1, 2, 3, 1, 2, 1, 3, 1, 2, 1];
+    console.log(majorityElement(arr));
+  </script>
+</body>
+</html>
