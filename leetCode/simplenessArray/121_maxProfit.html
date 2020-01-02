@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>买卖股票的最佳时机</title>
+</head>
+<body>
+  
+
+  <script>
+    const maxProfit = function(prices) {
+      // 用来存储当前最低价格 默认为 prices[0]
+      let buy = prices[0];
+      // 最大利润值 默认为 0
+      let money = 0;
+      for(let price of prices) {
+        buy = Math.min(buy, price);
+        money = Math.max(money, price - buy);
+      }
+      return money;
+    };
+    const arr = [7,1,5,3,6,4];
+    console.log(maxProfit(arr));
+    
+  </script>
+</body>
+</html>
