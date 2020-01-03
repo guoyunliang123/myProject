@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>买卖股票的最佳时机II</title>
+</head>
+<body>
+  
+  
+  <script>
+    /*
+      思路：
+        设置两个变量：buy money，分别代表买入的股票 初始值为 prices[0] 和 总收入 初始值为 0
+        遍历 prices 数组，分两种情况 price > buy 和 price <= buy
+        1: price > buy
+          说明此时股票的价格大于等于买入的价格，就卖股票，将这个差值加入到 money 总收入中
+        2: price <= buy
+          什么都不做
+          判断完后，更新 buy 为 price (也就是 buy 永远都会更新)
+          
+        注意：连续上升的股票一次买卖和多次买卖收入是一样的
+        因此：我们可以进行遍历，若 price[i] >= buy, 将 buy 设置为 price[i], 否则，就把这次的买卖加入到总利润中，
+        重新设置买卖金额为 price[i]
+    */
+    const maxProfit = (prices) => {
+      // 股票的总收入
+      let money = 0;
+      // 买入的股票
+      let buy = prices[0];
+      for (let price of prices) {
+        if (price > buy) {
+          money += price - buy;
+        }
+        buy = price;
+      }
+      return money
+    };
+    const arr = [7, 1, 5, 3, 6, 4];
+    const arr1 = [1, 2, 4, 7];
+    console.log(maxProfit(arr1));
+    
+  </script>
+</body>
+</html>
