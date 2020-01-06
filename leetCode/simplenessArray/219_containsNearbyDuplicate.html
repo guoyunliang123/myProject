@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>存在重复元素 II</title>
+</head>
+<body>
+  
+
+  <script>
+    const containsNearbyDuplicate = (nums, k) => {
+      for(let i=0; i<nums.length - 1; i++) {
+        for(let j=i+1; j<nums.length; j++){
+          if(nums[i] == nums[j] && j - i <= k){
+            return true;
+          }
+        }
+      }
+      return false;
+    };
+    const arr = [1,2,3,1,2,3];
+    const n = 2;
+    console.log(containsNearbyDuplicate(arr, n));
+
+
+    const containsNearbyDuplicate = function(nums, k) {
+      // 判断数组的长度 如果等于 0 或者 1 的话 返回 false
+      if(nums.length === 0 || nums.length === 1) {
+          return false
+      } 
+      // 判断如果数组的长度和去重之后的长度相等的话 (证明没有重复的元素) 返回 false
+      if(nums.length  === new Set(nums).size) {
+          return false
+      }
+
+      const map = new Map();
+
+      for(let i=0; i<nums.length; i++) {
+        const x = map.get(nums[i]);
+        if(x === undefined) {
+          map.set(nums[i], i)
+        } else  {
+          if((i - x) <= k) {
+            return true
+          } else {
+            map.set(nums[i], i)
+          }
+        } 
+      }
+      return false
+    };
+  </script>
+</body>
+</html>
