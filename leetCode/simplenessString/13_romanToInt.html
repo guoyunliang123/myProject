@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>罗马数字转整数</title>
+</head>
+<body>
+  
+
+  <script>
+    const romanTolnt = (s) => {
+      // 先把值存在 map 里
+      const map = new Map([['I', 1], ['V', 5], ['X', 10], ['L', 50], ['C', 100], ['D', 500], ['M', 1000]]);
+
+      // 从后往前算 get 取值  set 设置值
+      let i = s.length - 1;
+      let result = map.get(s[i]);
+
+      while(i > 0) {
+        const now = map.get(s[i]);
+        const prv = map.get(s[i - 1]);
+        if( prv >= now) {
+          result += prv;
+        } else {
+          result -= prv;
+        }
+        i--;
+      }
+      return result;
+    };
+
+    console.log(romanTolnt('LVIII'));
+    
+  </script>
+</body>
+</html>
