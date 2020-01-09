@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>最后一个单词的长度</title>
+</head>
+<body>
+  
+
+  <script>
+    // 先把字符串去空格变成数组，返回数组最后一个单词的长度
+    // const lengthOfLastWord = (s) => {
+    //   const arr = s.trim().split(' ');
+    //   return arr[arr.length - 1].length;
+    // };
+    // const str = " ";
+    // console.log(lengthOfLastWord(str));
+    
+
+
+    const lengthOfLastWord = (s) => {
+      s = s.trim();
+      // \s 匹配任何空白字符，包括空格、制表符、换页符等
+      // \w 匹配一个单子字符
+      const result = s.match(/\s(\w)+$/);
+      return result
+      if(!result) return s.length;
+      return result[0].length - 1;
+    };
+
+    const str = 'hello world';
+    console.log(lengthOfLastWord(str));
+  </script>
+</body>
+</html>
