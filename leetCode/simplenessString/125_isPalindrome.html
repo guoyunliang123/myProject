@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>验证回文串</title>
+</head>
+<body>
+  
+
+  <script>
+    // const isPalindrome = (str) => {
+    //   let s = str.replace(/[^a-z0-9]+/ig, '').toLocaleLowerCase()
+    //   const length = s.length / 2
+    //   for (let i = 0, j = s.length - 1; i < length; i++ , j--) {
+    //     if(s[i] !== s[j]){
+    //       return false
+    //     }
+    //   }
+    //   return true
+    // };
+    // const str = "A man, a plan, a canal: Panama";
+    // console.log(isPalindrome(str));
+
+    const isPalindrome = (s) => {
+      // 使用正则将字符串中的数字和字母提取出来 将字母都转为小写
+      s = s.replace(/[^0-9a-zA-Z]/g, "").toLocaleLowerCase();
+
+      // 数组无法判断相等，所以转为字符串判断是否相等
+      let reverse = s
+      .split("")
+      .reverse()
+      .join("")
+      return s === reverse;
+    };
+    const str = "A man, a plan, a canal: Panama";
+    console.log(isPalindrome(str));
+  </script>
+</body>
+</html>
