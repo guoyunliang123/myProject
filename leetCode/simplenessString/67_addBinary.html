@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>二进制求和</title>
+</head>
+<body>
+  
+
+  <script>
+    const addBinary = (a, b) => {
+      // 将 a 和 b 转为数组
+      let arrA = a.split('');
+      let arrB = b.split('');
+      // 取 a 和 b 中最常的那一个
+      let len = arrA.length < arrB.length ? arrB.length : arrA.length;
+      // 定义一个 c 用来记录是否需要进位
+      // c > 0 只有一种情况，就是在两个字符串长度相等，并且相加最高位有进位的情况
+      let c = 0;
+      // 存储结果
+      let result = '';
+
+      for(let i=len-1; i>=0 || c>0; i--) {
+        let curA = arrA.pop();
+        let curB = arrB.pop();
+
+        if(curA) {
+          c = c + parseInt(curA);
+        }
+        
+        if(curB) {
+          c = c + parseInt(curB);
+        }
+        // c 除以 2 的余数加上 result
+        result = (c % 2) + result;
+
+        c = c > 1 ? 1 : 0;
+      };
+      return result;
+    };
+    const x = '1010', y = '111';
+    console.log(addBinary(x, y));
+  </script>
+</body>
+</html>
