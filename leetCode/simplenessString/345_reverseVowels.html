@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>反转字符串中的元音字母</title>
+</head>
+<body>
+
+
+  <script>
+    // A、E、I、O、U
+    const reverseVowels =(s) => {
+      let i = 0; j = s.length - 1; reg = /[aeiouAEIOU]/; str = s;
+
+      while( i < j) {
+        if(!reg.test(s[i])) {
+           i ++;
+           continue;
+        }
+        if(!reg.test([s[j]])) {
+          j --;
+          continue;
+        }
+        if(s[i] !== s[j]) {
+          str = str.slice(0, i) + s[j] + str.slice(i+1, j) + s[i] + str.slice(j+1);
+        }
+        i ++;
+        j --;
+      };
+      return str;
+    };
+    const vowels = 'hello';
+    console.log(reverseVowels(vowels));
+  </script>
+</body>
+</html>
