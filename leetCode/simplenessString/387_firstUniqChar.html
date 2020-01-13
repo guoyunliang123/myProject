@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>字符串中的第一个唯一字符</title>
+</head>
+<body>
+  
+  <script>
+    const firstUniqChar = (s) => {
+      for(let c of s) {
+        // 如果两个索引的值相等，则代表没有重复
+        if(s.indexOf(c) === s.lastIndexOf(c)) return s.indexOf(c);
+      }
+      return -1;
+    };
+    const str = 'leetcode';
+    console.log(firstUniqChar(str));
+  </script>
+</body>
+</html>
