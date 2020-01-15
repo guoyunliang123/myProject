@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>字符串中的单词数</title>
+</head>
+<body>
+  
+  <script>
+    /* const countSegments = (s) => {
+      var num = 0;
+      var arr = s.split(" ");
+      console.log(arr);
+      for(let item of arr.values()){
+        item && (++num);
+      }
+      return num;
+    }; */
+
+    const countSegments = function(s) {
+      let count = 0;
+      let len = s.length;
+      let isWord = false;
+      for (var i = 0; i < len; i++) {
+        if (s[i] !== ' ') {
+          isWord = true;
+        } else {
+          if(isWord) count++;
+          isWord = false;
+        }
+      }  
+      return isWord ? count + 1 : count;
+    };
+
+    const str = "hello, my name is John";
+    console.log(countSegments(str)); 
+  
+  </script>
+</body>
+</html>

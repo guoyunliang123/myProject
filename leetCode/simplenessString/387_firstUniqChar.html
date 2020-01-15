@@ -11,7 +11,7 @@
   <script>
     const firstUniqChar = (s) => {
       for(let c of s) {
-        // 如果两个索引的值相等，则代表没有重复
+        // 第一次出现和最后一次出现在同一个位置，代表没有重复
         if(s.indexOf(c) === s.lastIndexOf(c)) return s.indexOf(c);
       }
       return -1;
