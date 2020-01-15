@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>转换成小写字母</title>
+</head>
+<body>
+  
+
+  <script>
+    const toLowerCase = (str) => {
+      let new_str = '';
+      for(let char of str){
+        // a -> 97
+        let charCode = char.charCodeAt();
+        // 65 - 90 为大写   97 - 122 为小写
+        if(charCode >= 65 && charCode < 91){
+          new_str += String.fromCharCode(charCode + 32);
+        } else {
+          new_str += char;
+        }
+      }
+      return new_str;
+    };
+    const s = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    console.log(toLowerCase(s));
+  
+  </script>
+</body>
+</html>
