@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>最长公告前缀</title>
+</head>
+<body>
+  
+
+  <script>
+    const longestCommonPrefix = (strs) => {
+      let firstStrs = strs[0];
+      let result = '';
+      if(!strs.length) return result;
+
+      for(let i=0; i<firstStrs.length; i++) {
+        for(let j=1; j<strs.length; j++) {
+          if(firstStrs[i] != strs[j][i]){
+            return result;
+          }
+        }
+        result += firstStrs[i];
+      }
+
+      return result;
+    };
+    const str = ["flower"];
+    console.log(longestCommonPrefix(str));
+    
+  </script>
+</body>
+</html>
