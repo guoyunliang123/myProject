@@ -232,3 +232,45 @@ const findDisappearedNumbers = (nums) => {
     return ret
 }
 // console.log(findDisappearedNumbers([4,3,2,7,8,2,3,1]))
+
+/**
+ * 485. 最大连续 1 的个数
+ *
+ * 给定一个二进制数组 nums ， 计算其中最大连续 1 的个数。
+ *
+ * 示例 1：
+ * 输入：nums = [1,1,0,1,1,1]
+ * 输出：3
+ * 解释：开头的两位和最后的三位都是连续 1 ，所以最大连续 1 的个数是 3.
+ *
+ * 示例 2:
+ * 输入：nums = [1,0,1,1,0,1]
+ * 输出：2
+ *
+ * 提示：
+ *
+ * 1 <= nums.length <= 105
+ * nums[i] 不是 0 就是 1.
+ * */
+const findMaxConsecutiveOnes = (nums) => {
+    // 题解：nums[i] 不是 0 就是 1.
+
+    // 方法1：
+
+    // nums = nums.join('').split('0'); //将数组转化为字符串，然后再以0为间隔转化为数组
+    // nums.sort((a , b) => b.length - a.length); // 排序，长度大的排前面
+    // return nums[0].length; // 返回第一个元素的长度
+
+    // 方法2：
+    let max = 0;  let count = 0;
+    for(let i = 0; i < nums.length; i++) {
+        if(nums[i] === 1) {
+            count++
+        } else {
+            count = 0
+        }
+        max = Math.max(max, count);
+    }
+    return max;
+}
+console.log(findMaxConsecutiveOnes([1,1,0,1,1,1]))
