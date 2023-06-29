@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>两个数组的交集</title>
+</head>
+<body>
+
+    <script>
+        /**
+         * 349. 两个数组的交集
+         * 给定两个数组 nums1 和 nums2 ，返回 它们的交集 。输出结果中的每个元素一定是 唯一 的。我们可以 不考虑输出结果的顺序 。
+         *
+         * 输入：nums1 = [1,2,2,1], nums2 = [2,2]
+         * 输出：[2]
+         *
+         * 输入：nums1 = [4,9,5], nums2 = [9,4,9,8,4]
+         * 输出：[9,4]
+         * 解释：[4,9] 也是可通过的
+         *
+         * */
+        // const intersection = (nums1, nums2) => {
+        //     let arr = [];
+        //     nums1.map(a => {
+        //         nums2.map(b => {
+        //             if(a === b) {
+        //                 arr.push(a);
+        //             }
+        //         })
+        //     })
+        //     return Array.from(new Set(arr));
+        // }
+
+        // const intersection = (nums1, nums2) => {
+        //     let arr = nums1.filter(v => nums2.indexOf(v) > -1);
+        //     return Array.from(new Set(arr));
+        // }
+
+
+
+        const intersection = (nums1, nums2) => {
+            let arr = [];
+            nums1.forEach(item => arr.includes(item) ? '' : nums2.includes(item) ? arr.push(item) : '');
+            return arr;
+        }
+
+
+
+        console.log(intersection([1,2,2,1], [2, 2]))
+        console.log(intersection([4,9,5], [9,4,9,8,4]))
+
+
+
+    </script>
+</body>
+</html>
