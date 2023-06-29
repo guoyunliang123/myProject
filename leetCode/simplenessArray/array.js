@@ -16,7 +16,7 @@ const intersection = (nums1, nums2) => {
     let arr = [];
     nums1.map(a => {
         nums2.map(b => {
-            if(a === b) {
+            if (a === b) {
                 arr.push(a);
             }
         })
@@ -73,9 +73,9 @@ const intersect = (nums1, nums2) => {
     // 方法2：
 
     const ans = [];
-    for(let item of nums1) {
+    for (let item of nums1) {
         const index = nums2.indexOf(item);
-        if(index !== -1) {
+        if (index !== -1) {
             nums2[index] = false;
             ans.push(item);
             console.log(nums2, 'nums2')
@@ -174,8 +174,8 @@ const getRow = (rowIndex) => {
     //  方法2；
 
     let lastRow = [1, 1]
-    if(rowIndex === 0) return [1]
-    if(rowIndex === 1) return lastRow;
+    if (rowIndex === 0) return [1]
+    if (rowIndex === 1) return lastRow;
     for (let i = 2; i <= rowIndex; i++) {
         let row = [1];
         for (let j = 1; j < i; j++) {
@@ -262,9 +262,10 @@ const findMaxConsecutiveOnes = (nums) => {
     // return nums[0].length; // 返回第一个元素的长度
 
     // 方法2：
-    let max = 0;  let count = 0;
-    for(let i = 0; i < nums.length; i++) {
-        if(nums[i] === 1) {
+    let max = 0;
+    let count = 0;
+    for (let i = 0; i < nums.length; i++) {
+        if (nums[i] === 1) {
             count++
         } else {
             count = 0
@@ -273,4 +274,55 @@ const findMaxConsecutiveOnes = (nums) => {
     }
     return max;
 }
-console.log(findMaxConsecutiveOnes([1,1,0,1,1,1]))
+// console.log(findMaxConsecutiveOnes([1,1,0,1,1,1]))
+
+/**
+ * 496. 下一个更大元素 I
+ *
+ * nums1 中数字 x 的 下一个更大元素 是指 x 在 nums2 中对应位置 右侧 的 第一个 比 x 大的元素。
+ * 给你两个 没有重复元素 的数组 nums1 和 nums2 ，下标从 0 开始计数，其中nums1 是 nums2 的子集。
+ * 对于每个 0 <= i < nums1.length ，找出满足 nums1[i] == nums2[j] 的下标 j ，并且在 nums2 确定 nums2[j] 的 下一个更大元素 。如果不存在下一个更大元素，那么本次查询的答案是 -1 。
+ * 返回一个长度为 nums1.length 的数组 ans 作为答案，满足 ans[i] 是如上所述的 下一个更大元素 。
+ *
+ * 示例 1：
+ * 输入：nums1 = [4,1,2], nums2 = [1,3,4,2].
+ * 输出：[-1,3,-1]
+ * 解释：nums1 中每个值的下一个更大元素如下所述：
+ * - 4 ，用加粗斜体标识，nums2 = [1,3,4,2]。不存在下一个更大元素，所以答案是 -1 。
+ * - 1 ，用加粗斜体标识，nums2 = [1,3,4,2]。下一个更大元素是 3 。
+ * - 2 ，用加粗斜体标识，nums2 = [1,3,4,2]。不存在下一个更大元素，所以答案是 -1 。
+ *
+ * 示例 2：
+ * 输入：nums1 = [2,4], nums2 = [1,2,3,4].
+ * 输出：[3,-1]
+ * 解释：nums1 中每个值的下一个更大元素如下所述：
+ * - 2 ，用加粗斜体标识，nums2 = [1,2,3,4]。下一个更大元素是 3 。
+ * - 4 ，用加粗斜体标识，nums2 = [1,2,3,4]。不存在下一个更大元素，所以答案是 -1 。
+ *
+ * 提示：
+ * 1 <= nums1.length <= nums2.length <= 1000
+ * 0 <= nums1[i], nums2[i] <= 104
+ * nums1和nums2中所有整数 互不相同
+ * nums1 中的所有整数同样出现在 nums2 中
+ * */
+const nextGreaterElement = (nums1, nums2) => {
+    // 方法1：
+
+    let arr = [];
+    for (let i = 0; i < nums1.length; i++) {
+        let index = nums2.indexOf(nums1[i]);
+        let maxIndex = nums2.slice(index).find(item => item > nums1[i]) || -1
+        arr.push(maxIndex)
+        // 此处判断可省略，因为 nums1 中出现的所有整数均出现在 nums2 中
+        // if(index !== -1) {
+        //     let maxIndex = nums2.slice(index).find(item => item > nums1[i]) || -1
+        //     arr.push(maxIndex)
+        // } else {
+        //     arr.push(-1)
+        // }
+    }
+    return arr
+}
+console.log(nextGreaterElement([4, 1, 2], [1, 3, 4, 2]))
+// console.log(nextGreaterElement([2,4], [1, 2, 3, 4]))
+// console.log(nextGreaterElement([1,3,5,2,4], [6,5,4,3,2,1,7]))
