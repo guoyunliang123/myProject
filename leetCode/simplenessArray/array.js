@@ -397,6 +397,7 @@ const findWords = (words) => {
             arr.push(item);
         }
     });
+
     function test(item2Arr) {
         let one = item2Arr[0];
         let str = '';
@@ -405,7 +406,99 @@ const findWords = (words) => {
         // 最后判断获取的过滤后的数组长度是否和传入的 item2Arr 长度相等
         return item2Arr.filter(item => str.includes(item)).length === item2Arr.length;
     }
+
     return arr;
 
 }
 // console.log(findWords(["Hello", "Alaska", "Dad", "Peace"]))
+
+/**
+ * 506. 相对名次
+ *
+ * 给你一个长度为 n 的整数数组 score ，其中 score[i] 是第 i 位运动员在比赛中的得分。所有得分都 互不相同 。
+ * 运动员将根据得分 决定名次 ，其中名次第 1 的运动员得分最高，名次第 2 的运动员得分第 2 高，依此类推。运动员的名次决定了他们的获奖情况：
+ *
+ * 名次第 1 的运动员获金牌 "Gold Medal" 。
+ * 名次第 2 的运动员获银牌 "Silver Medal" 。
+ * 名次第 3 的运动员获铜牌 "Bronze Medal" 。
+ * 从名次第 4 到第 n 的运动员，只能获得他们的名次编号（即，名次第 x 的运动员获得编号 "x"）。
+ * 使用长度为 n 的数组 answer 返回获奖，其中 answer[i] 是第 i 位运动员的获奖情况。
+ *
+ * 示例 1：
+ * 输入：score = [5,4,3,2,1]
+ * 输出：["Gold Medal","Silver Medal","Bronze Medal","4","5"]
+ * 解释：名次为 [1st, 2nd, 3rd, 4th, 5th] 。
+ *
+ * 示例 2：
+ * 输入：score = [10,3,8,9,4]
+ * 输出：["Gold Medal","5","Bronze Medal","Silver Medal","4"]
+ * 解释：名次为 [1st, 5th, 3rd, 2nd, 4th] 。
+ *
+ * 提示：
+ * n == score.length
+ * 1 <= n <= 104
+ * 0 <= score[i] <= 106
+ * score 中的所有值 互不相同
+ * */
+const findRelativeRanks = (score) => {
+    // 方法1：
+
+    // let oldScore = [...score];
+    // score.sort((a, b) => b - a);
+    // let result = [];
+    // for (let i = 0; i < score.length; i++) {
+    //     let index  = oldScore.indexOf(score[i]);
+    //     i === 0 ? result[index] = 'Gold Medal' : '';
+    //     i === 1 ? result[index] = 'Silver Medal' : '';
+    //     i === 2 ? result[index] = 'Bronze Medal' : '';
+    //     if(i === 0 || i === 1 || i === 2) {
+    //         continue
+    //     }
+    //     result[index] = String(i + 1)
+    // }
+    // return result;
+
+    // 方法2：
+
+    // let result = [];
+    // let oldScore = [...score];
+    // let rankingMap = new Map();
+    // score.sort((a, b) => b - a);
+    // let rank = (index) => {
+    //     if (index === 0) {
+    //         return 'Gold Medal';
+    //     } else if (index === 1) {
+    //         return 'Silver Medal';
+    //     } else if (index === 2) {
+    //         return 'Bronze Medal';
+    //     } else {
+    //         return String(index + 1)
+    //     }
+    // }
+    // score.map((item, index) => {
+    //     rankingMap.set(item, rank(index))
+    // })
+    // oldScore.map((item, index) => {
+    //     result.push(rankingMap.get(item))
+    // })
+    // return result;
+
+    // 方法3：
+    let object = {};
+    let arr = [...score];
+    arr.sort((a, b) => b - a);
+    arr.forEach((item, index) => {
+        if(index + 1 > 3) {
+            object[item] = (index + 1).toString()
+        } else {
+            const num = index + 1;
+            object[item] = num === 1 ? 'Gold Medal' : num === 2 ? 'Silver Medal' : 'Bronze Medal';
+        }
+    })
+    let data = [];
+    score.forEach(item => {
+        data.push(object[item])
+    })
+    return data;
+}
+console.log(findRelativeRanks([10, 3, 8, 9, 4]))
