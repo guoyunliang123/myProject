@@ -763,10 +763,99 @@ const findShortestSubArray = (nums) => {
     let result = 50000;
     for (let key in map) {
         let idx = map[key]
-        if(idx.length === max) {
+        if (idx.length === max) {
             result = Math.min(result, idx[idx.length - 1] - idx[0] + 1)
         }
     }
     return result;
 }
 // console.log(findShortestSubArray([1, 3, 2, 2, 3, 1]))
+
+/**
+ * 566. 重塑矩阵
+ *
+ * 在 MATLAB 中，有一个非常有用的函数 reshape ，它可以将一个 m x n 矩阵重塑为另一个大小不同（r x c）的新矩阵，但保留其原始数据。
+ *
+ * 给你一个由二维数组 mat 表示的 m x n 矩阵，以及两个正整数 r 和 c ，分别表示想要的重构的矩阵的行数和列数。
+ *
+ * 重构后的矩阵需要将原始矩阵的所有元素以相同的 行遍历顺序 填充。
+ *
+ * 如果具有给定参数的 reshape 操作是可行且合理的，则输出新的重塑矩阵；否则，输出原始矩阵。
+ *
+ * 示例 1：
+ * 输入：mat = [[1,2],[3,4]], r = 1, c = 4
+ * 输出：[[1,2,3,4]]
+ *
+ * 示例 2：
+ * 输入：mat = [[1,2],[3,4]], r = 2, c = 4
+ * 输出：[[1,2],[3,4]]
+ *
+ * 提示：
+ * m == mat.length
+ * n == mat[i].length
+ * 1 <= m, n <= 100
+ * -1000 <= mat[i][j] <= 1000
+ * 1 <= r, c <= 300
+ * */
+// ------------------------ 不理解提题意 ---------------
+const matrixReshape = (mat, r, c) => {
+    // let drawdownArr = [];
+    // for (let i = 0; i < mat.length; i++) {
+    //     drawdownArr.push(...mat[i])
+    // }
+    // let resultArr = [];
+    // function subGroup(arr, len) {
+    //     let newArr = []
+    //     for (let i = 0; i < arr.length; i++) {
+    //         if (Math.floor(i / len) === i / len) {
+    //             newArr.push(arr.slice(i, i + len))
+    //         }
+    //     }
+    //     return newArr;
+    // }
+    // resultArr = subGroup(drawdownArr, drawdownArr.length / r)
+    // return resultArr;
+}
+// console.log(matrixReshape([[1,2],[3,4]], 2, 4))
+
+/**
+ * 674. 最长连续递增序列
+ *
+ * 给定一个未经排序的整数数组，找到最长且 连续递增的子序列，并返回该序列的长度。
+ *
+ * 连续递增的子序列 可以由两个下标 l 和 r（l < r）确定，如果对于每个 l <= i < r，都有 nums[i] < nums[i + 1] ，
+ * 那么子序列 [nums[l], nums[l + 1], ..., nums[r - 1], nums[r]] 就是连续递增子序列。
+ *
+ * 示例 1：
+ * 输入：nums = [1,3,5,4,7]
+ * 输出：3
+ * 解释：最长连续递增序列是 [1,3,5], 长度为3。
+ * 尽管 [1,3,5,7] 也是升序的子序列, 但它不是连续的，因为 5 和 7 在原数组里被 4 隔开。
+ *
+ * 示例 2：
+ * 输入：nums = [2,2,2,2,2]
+ * 输出：1
+ * 解释：最长连续递增序列是 [2], 长度为1。
+ *
+ * 提示：
+ *
+ * 1 <= nums.length <= 104
+ * -109 <= nums[i] <= 109
+ * */
+const findLengthOfLCIS = (nums) => {
+    // 方法1：
+
+    if(nums.length === 0) return 0;
+    let result = 1;
+    let count = 1;
+    for (let i = 1; i < nums.length; i++) {
+        if(nums[i] > nums[i - 1]) {
+            count++
+        } else {
+            count = 1
+        }
+        if(count > result) result = count
+    }
+    return result;
+}
+// console.log(findLengthOfLCIS([1,3,5,4,7]))
