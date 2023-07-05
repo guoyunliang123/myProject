@@ -681,7 +681,7 @@ const findPoisonedDuration = (timeSeries, duration) => {
 
     let last = -1;
     let sum = 0;
-    for(let v of timeSeries) {
+    for (let v of timeSeries) {
         const e = v + duration - 1;
         sum += last < v ? duration : e - last;
         last = e;
@@ -689,3 +689,84 @@ const findPoisonedDuration = (timeSeries, duration) => {
     return sum;
 }
 // console.log(findPoisonedDuration([1,2], 2))
+
+/**
+ * 697. 数组的度
+ *
+ * 给定一个非空且只包含非负数的整数数组 nums，数组的 度 的定义是指数组里任一元素出现频数的最大值。
+ *
+ * 你的任务是在 nums 中找到与 nums 拥有相同大小的度的最短连续子数组，返回其长度。
+ *
+ * 示例 1：
+ * 输入：nums = [1,2,2,3,1]
+ * 输出：2
+ * 解释：
+ * 输入数组的度是 2 ，因为元素 1 和 2 的出现频数最大，均为 2 。
+ * 连续子数组里面拥有相同度的有如下所示：
+ * [1, 2, 2, 3, 1], [1, 2, 2, 3], [2, 2, 3, 1], [1, 2, 2], [2, 2, 3], [2, 2]
+ * 最短连续子数组 [2, 2] 的长度为 2 ，所以返回 2 。
+ *
+ * 示例 2：
+ * 输入：nums = [1,2,2,3,1,4,2]
+ * 输出：6
+ * 解释：
+ * 数组的度是 3 ，因为元素 2 重复出现 3 次。
+ * 所以 [2,2,3,1,4,2] 是最短子数组，因此返回 6 。
+ *
+ * 提示：
+ * nums.length 在 1 到 50,000 范围内。
+ * nums[i] 是一个在 0 到 49,999 范围内的整数。
+ * */
+const findShortestSubArray = (nums) => {
+    // 方法1：找出 nums 中出现次数最多的元素组成数组，然后循环数组找出每个元素最短连续子数组
+
+    // let obj = {}, max = 0, maxEle;
+    // for (let i = 0; i < nums.length; i++) {
+    //     let val = nums[i]
+    //     obj[val] === undefined ? obj[val] = 1 : obj[val]++;
+    //     // 当前循环中直接比较出现次数最大值
+    //     if (obj[val] > max) {
+    //         max = obj[val]
+    //         maxEle = val
+    //     }
+    // }
+    // // nums 中出现次数最多的元素组成的数组
+    // let arr = Object.keys(obj).filter(key=> obj[key]=== max);
+    // let dataIndex = 0;
+    // for (let i = 0; i < arr.length; i++) {
+    //     let minIndex = nums.indexOf(Number(arr[i]));
+    //     let maxIndex = nums.lastIndexOf(Number(arr[i]));
+    //     if(!dataIndex || dataIndex > (maxIndex - minIndex + 1)) {
+    //         dataIndex = maxIndex - minIndex + 1
+    //     }
+    // }
+    // return dataIndex;
+
+    // 方法2：
+
+    let len = nums.length;
+    let map = {};
+    // map 中每一项记录的是 nums 数组中每个元素出现的的下标
+    for (let i = 0; i < len; i++) {
+        let value = nums[i];
+        if (!map[value]) {
+            map[value] = [];
+        }
+        map[value].push(i);
+    }
+    // 判断 map 中每项数组长度，取最长的然后判断差值
+    let max = 0;
+    for (let key in map) {
+        max = Math.max(map[key].length, max)
+    }
+    if (max === 1) return 1;
+    let result = 50000;
+    for (let key in map) {
+        let idx = map[key]
+        if(idx.length === max) {
+            result = Math.min(result, idx[idx.length - 1] - idx[0] + 1)
+        }
+    }
+    return result;
+}
+// console.log(findShortestSubArray([1, 3, 2, 2, 3, 1]))
