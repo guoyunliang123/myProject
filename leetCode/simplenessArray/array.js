@@ -1073,3 +1073,45 @@ const findContentChildren = (g, s) => {
     return maxSatisfy;
 }
 // console.log(findContentChildren([10, 9, 8, 7], [5, 6, 7, 8]))
+
+/**
+ * 598. 范围求和 II
+ *
+ * 给你一个 m x n 的矩阵 M ，初始化时所有的 0 和一个操作数组 op ，
+ * 其中 ops[i] = [ai, bi] 意味着当所有的 0 <= x < ai 和 0 <= y < bi 时， M[x][y] 应该加 1。
+ *
+ * 在 执行完所有操作后 ，计算并返回 矩阵中最大整数的个数 。
+ *
+ * 示例 1:
+ * 输入: m = 3, n = 3，ops = [[2,2],[3,3]]
+ * 输出: 4
+ * 解释: M 中最大的整数是 2, 而且 M 中有4个值为2的元素。因此返回 4。
+ *
+ * 示例 2:
+ * 输入: m = 3, n = 3, ops = [[2,2],[3,3],[3,3],[3,3],[2,2],[3,3],[3,3],[3,3],[2,2],[3,3],[3,3],[3,3]]
+ * 输出: 4
+ *
+ * 示例 3:
+ * 输入: m = 3, n = 3, ops = []
+ * 输出: 9
+ *
+ * 提示:
+ *
+ * 1 <= m, n <= 4 * 104
+ * 0 <= ops.length <= 104
+ * ops[i].length == 2
+ * 1 <= ai <= m
+ * 1 <= bi <= n
+ * */
+const maxCount = (m, n, ops) => {
+    // 思路：因为每次操作都是从左上角开始，所以找到备操作次数最多的数就好，即最小的 a * 最小的 b，当然还要考虑 a，b是否大于 m，n
+    // 如果大于，将 m，n 赋给最小的 a，b。因为每次最多只有 m * n 个数
+    let minA = m, minB = n;
+    for (let i = 0; i < ops.length; i++) {
+        minA = Math.min(minA, ops[i][0]);
+        minB = Math.min(minB, ops[i][1]);
+    }
+    return minA * minB;
+}
+// console.log(maxCount(3, 3, [[3,1],[1,3]]))
+// console.log(maxCount(3, 3, []))
