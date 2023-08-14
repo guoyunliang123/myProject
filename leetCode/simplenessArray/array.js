@@ -798,25 +798,27 @@ const findShortestSubArray = (nums) => {
  * 1 <= r, c <= 300
  * */
 // ------------------------ 不理解提题意 ---------------
-const matrixReshape = (mat, r, c) => {
-    // let drawdownArr = [];
-    // for (let i = 0; i < mat.length; i++) {
-    //     drawdownArr.push(...mat[i])
-    // }
-    // let resultArr = [];
-    // function subGroup(arr, len) {
-    //     let newArr = []
-    //     for (let i = 0; i < arr.length; i++) {
-    //         if (Math.floor(i / len) === i / len) {
-    //             newArr.push(arr.slice(i, i + len))
-    //         }
-    //     }
-    //     return newArr;
-    // }
-    // resultArr = subGroup(drawdownArr, drawdownArr.length / r)
-    // return resultArr;
-}
+// const matrixReshape = (mat, r, c) => {
+//     let drawdownArr = [];
+//     for (let i = 0; i < mat.length; i++) {
+//         drawdownArr.push(...mat[i])
+//     }
+//     console.log(drawdownArr)
+//     let resultArr = [];
+//     function subGroup(arr, len) {
+//         let newArr = []
+//         for (let i = 0; i < arr.length; i++) {
+//             if (Math.floor(i / len) === i / len) {
+//                 newArr.push(arr.slice(i, i + len))
+//             }
+//         }
+//         return newArr;
+//     }
+//     resultArr = subGroup(drawdownArr, drawdownArr.length / r)
+//     return resultArr;
+// }
 // console.log(matrixReshape([[1,2],[3,4]], 2, 4))
+// console.log(matrixReshape([[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16],[17,18,19,20]], 2, 4))
 
 /**
  * 674. 最长连续递增序列
@@ -965,9 +967,9 @@ const imageSmoother = (img) => {
     for (let i = 0; i < n; i++) {
         for (let j = 0; j < m; j++) {
             let sum = 0, num = 0;
-            for (let x = i - 1; x <= i + 1; x ++) {
+            for (let x = i - 1; x <= i + 1; x++) {
                 for (let y = j - 1; y <= j + 1; y++) {
-                    if(x >= 0 & x < n & y >= 0 & y < m) {
+                    if (x >= 0 & x < n & y >= 0 & y < m) {
                         sum += img[x][y]
                         num++
                     }
@@ -1016,14 +1018,14 @@ const islandPerimeter = (grid) => {
     let res = 0;
     for (let i = 0; i < m; i++) {
         for (let j = 0; j < n; j++) {
-            if(grid[i][j] === 1) {
+            if (grid[i][j] === 1) {
                 res += 4;
-                if(grid[i][j + 1] === 1) {
+                if (grid[i][j + 1] === 1) {
                     // 判断右边是否为陆地
                     res -= 2
                 }
                 //  判断下面是否为陆地，最后一行不用判断
-                if(grid[i + 1] && grid[i + 1][j] === 1) {
+                if (grid[i + 1] && grid[i + 1][j] === 1) {
                     res -= 2
                 }
             }
@@ -1065,7 +1067,7 @@ const findContentChildren = (g, s) => {
     // 循环胃口值数组 sSort，
     // 满足小孩胃口，则将胃口数组 gSort 中移除，并计数
     for (let i = 0; i < sSort.length; i++) {
-        if(gSort[0] <= sSort[i]) {
+        if (gSort[0] <= sSort[i]) {
             maxSatisfy++;
             gSort.shift();
         }
@@ -1145,12 +1147,12 @@ const findRestaurant = (list1, list2) => {
     let minIndex = [];
     for (let i = 0; i < list1.length; i++) {
         for (let j = 0; j < list2.length; j++) {
-            if(list1[i] === list2[j]) {
-                if(i + j < minCount) {
+            if (list1[i] === list2[j]) {
+                if (i + j < minCount) {
                     minCount = i + j;
                     minIndex = [];
                     minIndex.push(list1[i])
-                } else if(i + j === minCount){
+                } else if (i + j === minCount) {
                     minIndex.push(list1[i])
                 }
             }
@@ -1210,3 +1212,90 @@ const findMaxAverage = (nums, k) => {
     return max / k;
 }
 // console.log(findMaxAverage([8860,-853,6534,4477,-4589,8646,-6155,-5577,-1656,-5779,-2619,-8604,-1358,-8009,4983,7063,3104,-1560,4080,2763,5616,-2375,2848,1394,-7173,-5225,-8244,-809,8025,-4072,-4391,-9579,1407,6700,2421,-6685,5481,-1732,-8892,-6645,3077,3287,-4149,8701,-4393,-9070,-1777,2237,-3253,-506,-4931,-7366,-8132,5406,-6300,-275,-1908,67,3569,1433,-7262,-437,8303,4498,-379,3054,-6285,4203,6908,4433,3077,2288,9733,-8067,3007,9725,9669,1362,-2561,-4225,5442,-9006,-429,160,-9234,-4444,3586,-5711,-9506,-79,-4418,-4348,-5891], 93));
+
+/**
+ * 645. 错误的集合
+ *
+ * 集合 s 包含从 1 到 n 的整数。不幸的是，因为数据错误，导致集合里面某一个数字复制了成了集合里面的另外一个数字的值，导致集合 丢失了一个数字 并且 有一个数字重复 。
+ *
+ * 给定一个数组 nums 代表了集合 S 发生错误后的结果。
+ *
+ * 请你找出重复出现的整数，再找到丢失的整数，将它们以数组的形式返回。
+ *
+ * 示例 1：
+ * 输入：nums = [1,2,2,4]
+ * 输出：[2,3]
+ *
+ * 示例 2：
+ * 输入：nums = [1,1]
+ * 输出：[1,2]
+ *
+ * 提示：
+ * 2 <= nums.length <= 104
+ * 1 <= nums[i] <= 104
+ * */
+const findErrorNums = (nums) => {
+    // 方法1：leetCode 最优解
+    // 思路：创建一个 nums 长度 + 1 的数组，
+    // 遍历 nums，将 nums 中的元素作为数组下标，
+    // 然后将数组下标对应的元素值加 1，
+    // 最后遍历数组，找出数组下标对应的元素值大于 1 的元素，
+    // 即为重复的元素，再遍历数组，找出数组下标对应的元素值为 0 的元素，
+    // 即为缺失的元素。
+    // 注意：
+    // 1、创建数组的长度为 nums.length + 1，
+    // 因为 nums 数组中元素的范围是 [1,nums.length]，
+    // 因此创建数组的长度为 nums.length + 1，
+    // 这样能保证数组下标不会越界。
+    // 2、创建数组时，数组元素初始值都为 0，
+    // 这样能保证数组下标对应的元素值都是 0。
+    // 3、遍历 nums 数组时，
+    // 数组下标对应的元素值加 1，
+    // 这样能保证数组下标对应的元素值都是 1。
+    // 4、遍历数组时，
+    // 数组下标对应的元素值大于 1，
+    // 即为重复的元素，
+    // 数组下标对应的元素值为 0，
+    // 即为缺失的元素。
+    let n = nums.length;
+    let digits = new Array(n + 1).fill(0);
+    // nums = [2, 2]
+    for (const num of nums) {
+        digits[num] += 1;
+    }
+    console.log(digits, 'digits')
+    let lose = -1, duplicate = -1;
+    for (let i = 1; i <= n; i++) {
+        if (digits[i] === 0) lose = i;
+        if (digits[i] === 2) duplicate = i;
+    }
+    return [duplicate, lose];
+
+    // 方法2：
+    // // 对nums数组进行排序
+    // nums.sort((a, b) => a - b);
+    // // 为了比较相邻两个元素的差，设置前一个元素的指针
+    // let pre = 0;
+    // // 创建一个长度为2的数组，且所有元素初始值为0
+    // let res = new Array(2).fill(0);
+    // const n = nums.length;
+    // // 遍历数组
+    // for (let i = 0; i < n; i++) {
+    //     const curr = nums[i];
+    //     if (curr === pre) {
+    //         // 相邻且相等的元素，一定是重复的数字
+    //         res[0] = curr;
+    //     } else if (curr - pre > 1) {
+    //         // 相邻两个元素差值大于1（为2），其中间的元素即为丢失元素
+    //         res[1] = curr - 1;
+    //     }
+    //     // pre指针下移
+    //     pre = curr;
+    // }
+    // // 如果丢失的是数字的是n，就判断数组最后一个元素是否为n
+    // if (nums[n - 1] !== n) {
+    //     res[1] = n;
+    // }
+    // return res;
+}
+// console.log(findErrorNums([1,2,2,4]))
