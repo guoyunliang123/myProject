@@ -1301,6 +1301,52 @@ const findShortestSubArray = (nums) => {
 // console.log(findShortestSubArray([1, 3, 2, 2, 3, 1]))
 
 /**
+ * 704. 二分查找
+ *
+ * 给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target  ，写一个函数搜索 nums 中的 target，如果目标值存在返回下标，否则返回 -1。
+ *
+ * 示例 1:
+ * 输入: nums = [-1,0,3,5,9,12], target = 9
+ * 输出: 4
+ * 解释: 9 出现在 nums 中并且下标为 4
+ *
+ * 示例 2:
+ * 输入: nums = [-1,0,3,5,9,12], target = 2
+ * 输出: -1
+ * 解释: 2 不存在 nums 中因此返回 -1
+ *
+ * 提示：
+ * 你可以假设 nums 中的所有元素是不重复的。
+ * n 将在 [1, 10000]之间。
+ * nums 的每个元素都将在 [-9999, 9999]之间。
+ * */
+const search = (nums, target) => {
+    // return nums.indexOf(target)
+    // let count = -1;
+    // for (let i = 0; i < nums.length; i++) {
+    //     if(nums[i] === target) {
+    //         count = i;
+    //         break
+    //     }
+    // }
+    // return count;
+
+    // 二分查找
+    let left = 0, right = nums.length;
+    while (left < right) {
+        let mid = left + Math.floor((left + right) / 2)
+        if(nums[mid] === target) return mid;
+        if(nums[mid] < target) {
+            left = mid + 1
+        } else if(nums[mid] > target) {
+            right = mid
+        }
+    }
+    return -1
+}
+// console.log(search([-1,0,3,5,9,12], 9))
+
+/**
  * 746. 使用最小花费爬楼梯
  *
  * 给你一个整数数组 cost ，其中 cost[i] 是从楼梯第 i 个台阶向上爬需要支付的费用。一旦你支付此费用，即可选择向上爬一个或者两个台阶。
