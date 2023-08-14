@@ -1,91 +1,4 @@
 /**
- * 349. 两个数组的交集
- * 给定两个数组 nums1 和 nums2 ，返回 它们的交集 。输出结果中的每个元素一定是 唯一 的。我们可以 不考虑输出结果的顺序 。
- *
- * 输入：nums1 = [1,2,2,1], nums2 = [2,2]
- * 输出：[2]
- *
- * 输入：nums1 = [4,9,5], nums2 = [9,4,9,8,4]
- * 输出：[9,4]
- * 解释：[4,9] 也是可通过的
- *
- * */
-const intersection = (nums1, nums2) => {
-    // 方法1：
-
-    let arr = [];
-    nums1.map(a => {
-        nums2.map(b => {
-            if (a === b) {
-                arr.push(a);
-            }
-        })
-    })
-    return Array.from(new Set(arr));
-
-    // 方法2：
-
-    //     let arr = nums1.filter(v => nums2.indexOf(v) > -1);
-    //     return Array.from(new Set(arr));
-
-    // 方法3
-
-    // let arr = [];
-    // nums1.forEach(item => arr.includes(item) ? '' : nums2.includes(item) ? arr.push(item) : '');
-    // return arr;
-}
-// console.log(intersection([1,2,2,1], [2, 2]))
-// console.log(intersection([4,9,5], [9,4,9,8,4]))
-
-
-/**
- * 350. 两个数组的交集 II
- *
- * 给你两个整数数组 nums1 和 nums2 ，请你以数组形式返回两数组的交集。返回结果中每个元素出现的次数，
- * 应与元素在两个数组中都出现的次数一致（如果出现次数不一致，则考虑取较小值）。可以不考虑输出结果的顺序。
- *
- * 示例 1：
- * 输入：nums1 = [1,2,2,1], nums2 = [2,2] / nums2 = [2]
- * 输出：[2,2]  /  [2]
- *
- * 示例 2:
- * 输入：nums1 = [4,9,5], nums2 = [9,4,9,8,4]
- * 输出：[4,9]
- * */
-const intersect = (nums1, nums2) => {
-    // 方法1：
-
-    // let hashTable = {};
-    // let target = [];
-    // nums1.forEach(v => {
-    //     if(hashTable[v]) hashTable[v]++;
-    //     else hashTable[v] = 1;
-    // })
-    // console.log(hashTable, 'hashTable')
-    // nums2.forEach(v => {
-    //     if(hashTable[v] && hashTable[v] > 0) {
-    //         hashTable[v]--;
-    //         target.push(v);
-    //     }
-    // })
-    // return target;
-
-    // 方法2：
-
-    const ans = [];
-    for (let item of nums1) {
-        const index = nums2.indexOf(item);
-        if (index !== -1) {
-            nums2[index] = false;
-            ans.push(item);
-            console.log(nums2, 'nums2')
-        }
-    }
-    return ans;
-}
-// console.log(intersect([1,2,3,2,1, 100], [2, 2]))
-
-/**
  * 118. 杨辉三角
  *
  * 给定一个非负整数 numRows，生成 杨辉三角 的前 numRows 行。
@@ -189,6 +102,93 @@ const getRow = (rowIndex) => {
 // console.log(getRow(4))
 
 /**
+ * 349. 两个数组的交集
+ * 给定两个数组 nums1 和 nums2 ，返回 它们的交集 。输出结果中的每个元素一定是 唯一 的。我们可以 不考虑输出结果的顺序 。
+ *
+ * 输入：nums1 = [1,2,2,1], nums2 = [2,2]
+ * 输出：[2]
+ *
+ * 输入：nums1 = [4,9,5], nums2 = [9,4,9,8,4]
+ * 输出：[9,4]
+ * 解释：[4,9] 也是可通过的
+ *
+ * */
+const intersection = (nums1, nums2) => {
+    // 方法1：
+
+    let arr = [];
+    nums1.map(a => {
+        nums2.map(b => {
+            if (a === b) {
+                arr.push(a);
+            }
+        })
+    })
+    return Array.from(new Set(arr));
+
+    // 方法2：
+
+    //     let arr = nums1.filter(v => nums2.indexOf(v) > -1);
+    //     return Array.from(new Set(arr));
+
+    // 方法3
+
+    // let arr = [];
+    // nums1.forEach(item => arr.includes(item) ? '' : nums2.includes(item) ? arr.push(item) : '');
+    // return arr;
+}
+// console.log(intersection([1,2,2,1], [2, 2]))
+// console.log(intersection([4,9,5], [9,4,9,8,4]))
+
+
+/**
+ * 350. 两个数组的交集 II
+ *
+ * 给你两个整数数组 nums1 和 nums2 ，请你以数组形式返回两数组的交集。返回结果中每个元素出现的次数，
+ * 应与元素在两个数组中都出现的次数一致（如果出现次数不一致，则考虑取较小值）。可以不考虑输出结果的顺序。
+ *
+ * 示例 1：
+ * 输入：nums1 = [1,2,2,1], nums2 = [2,2] / nums2 = [2]
+ * 输出：[2,2]  /  [2]
+ *
+ * 示例 2:
+ * 输入：nums1 = [4,9,5], nums2 = [9,4,9,8,4]
+ * 输出：[4,9]
+ * */
+const intersect = (nums1, nums2) => {
+    // 方法1：
+
+    // let hashTable = {};
+    // let target = [];
+    // nums1.forEach(v => {
+    //     if(hashTable[v]) hashTable[v]++;
+    //     else hashTable[v] = 1;
+    // })
+    // console.log(hashTable, 'hashTable')
+    // nums2.forEach(v => {
+    //     if(hashTable[v] && hashTable[v] > 0) {
+    //         hashTable[v]--;
+    //         target.push(v);
+    //     }
+    // })
+    // return target;
+
+    // 方法2：
+
+    const ans = [];
+    for (let item of nums1) {
+        const index = nums2.indexOf(item);
+        if (index !== -1) {
+            nums2[index] = false;
+            ans.push(item);
+            console.log(nums2, 'nums2')
+        }
+    }
+    return ans;
+}
+// console.log(intersect([1,2,3,2,1, 100], [2, 2]))
+
+/**
  * 448. 找到所有数组中消失的数字
  *
  * 给你一个含 n 个整数的数组 nums ，其中 nums[i] 在区间 [1, n] 内。
@@ -234,6 +234,99 @@ const findDisappearedNumbers = (nums) => {
 // console.log(findDisappearedNumbers([4,3,2,7,8,2,3,1]))
 
 /**
+ * 455. 分发饼干
+ *
+ * 假设你是一位很棒的家长，想要给你的孩子们一些小饼干。但是，每个孩子最多只能给一块饼干。
+ *
+ * 对每个孩子 i，都有一个胃口值 g[i]，这是能让孩子们满足胃口的饼干的最小尺寸；并且每块饼干 j，都有一个尺寸 s[j] 。
+ * 如果 s[j] >= g[i]，我们可以将这个饼干 j 分配给孩子 i ，这个孩子会得到满足。你的目标是尽可能满足越多数量的孩子，并输出这个最大数值。
+ *
+ * 示例 1:
+ * 输入: g = [1,2,3], s = [1,1]
+ * 输出: 1
+ * 解释:
+ * 你有三个孩子和两块小饼干，3个孩子的胃口值分别是：1,2,3。
+ * 虽然你有两块小饼干，由于他们的尺寸都是1，你只能让胃口值是1的孩子满足。
+ * 所以你应该输出1。
+ *
+ * 示例 2:
+ * 输入: g = [1,2], s = [1,2,3]
+ * 输出: 2
+ * 解释:
+ * 你有两个孩子和三块小饼干，2个孩子的胃口值分别是1,2。
+ * 你拥有的饼干数量和尺寸都足以让所有孩子满足。
+ * 所以你应该输出2.
+ * */
+const findContentChildren = (g, s) => {
+    // 将小孩胃口 g 和饼干 s 按从小到大排序
+    let gSort = g.sort((a, b) => a - b);
+    let sSort = s.sort((a, b) => a - b);
+    let maxSatisfy = 0;
+    // 循环胃口值数组 sSort，
+    // 满足小孩胃口，则将胃口数组 gSort 中移除，并计数
+    for (let i = 0; i < sSort.length; i++) {
+        if (gSort[0] <= sSort[i]) {
+            maxSatisfy++;
+            gSort.shift();
+        }
+    }
+    return maxSatisfy;
+}
+// console.log(findContentChildren([10, 9, 8, 7], [5, 6, 7, 8]))
+
+/**
+ * 463. 岛屿的周长
+ *
+ * 给定一个 row x col 的二维网格地图 grid ，其中：grid[i][j] = 1 表示陆地， grid[i][j] = 0 表示水域。
+ *
+ * 网格中的格子 水平和垂直 方向相连（对角线方向不相连）。整个网格被水完全包围，但其中恰好有一个岛屿（或者说，一个或多个表示陆地的格子相连组成的岛屿）。
+ *
+ * 岛屿中没有“湖”（“湖” 指水域在岛屿内部且不和岛屿周围的水相连）。格子是边长为 1 的正方形。网格为长方形，且宽度和高度均不超过 100 。计算这个岛屿的周长。
+ *
+ * 示例 1：
+ * 输入：grid = [[0,1,0,0],[1,1,1,0],[0,1,0,0],[1,1,0,0]]
+ * 输出：16
+ * 解释：它的周长是上面图片中的 16 个黄色的边
+ *
+ * 示例 2：
+ * 输入：grid = [[1]]
+ * 输出：4
+ *
+ * 示例 3：
+ * 输入：grid = [[1,0]]
+ * 输出：4
+ * */
+const islandPerimeter = (grid) => {
+    /**
+     * 思路：
+     * 1、遍历二位数组，首先判断是否为陆地
+     * 2、如果是陆地，则周长加4，还要进一步判断单元格右边和下边是否为陆地(因为左面和上面已经判断过了)，
+     *    如果下面和右边都是陆地，周长分别在减去2（重合部分要算两次）。
+     * 3、如果是海洋，则不需要处理。
+     * */
+    const m = grid.length;
+    const n = grid[0].length;
+    let res = 0;
+    for (let i = 0; i < m; i++) {
+        for (let j = 0; j < n; j++) {
+            if (grid[i][j] === 1) {
+                res += 4;
+                if (grid[i][j + 1] === 1) {
+                    // 判断右边是否为陆地
+                    res -= 2
+                }
+                //  判断下面是否为陆地，最后一行不用判断
+                if (grid[i + 1] && grid[i + 1][j] === 1) {
+                    res -= 2
+                }
+            }
+        }
+    }
+    return res;
+}
+// console.log(islandPerimeter([[1]]))
+
+/**
  * 485. 最大连续 1 的个数
  *
  * 给定一个二进制数组 nums ， 计算其中最大连续 1 的个数。
@@ -275,6 +368,66 @@ const findMaxConsecutiveOnes = (nums) => {
     return max;
 }
 // console.log(findMaxConsecutiveOnes([1,1,0,1,1,1]))
+
+/**
+ * 495. 提莫攻击
+ *
+ * 当提莫攻击艾希，艾希的中毒状态正好持续 duration 秒。
+ *
+ * 正式地讲，提莫在 t 发起攻击意味着艾希在时间区间 [t, t + duration - 1]（含 t 和 t + duration - 1）处于中毒状态。如果提莫在中毒影响结束 前 再次攻击，中毒状态计时器将会 重置 ，在新的攻击之后，中毒影响将会在 duration 秒后结束。
+ *
+ * 给你一个 非递减 的整数数组 timeSeries ，其中 timeSeries[i] 表示提莫在 timeSeries[i] 秒时对艾希发起攻击，以及一个表示中毒持续时间的整数 duration 。
+ *
+ * 返回艾希处于中毒状态的 总 秒数。
+ *
+ * 示例 1：
+ * 输入：timeSeries = [1,4], duration = 2
+ * 输出：4
+ * 解释：提莫攻击对艾希的影响如下：
+ * - 第 1 秒，提莫攻击艾希并使其立即中毒。中毒状态会维持 2 秒，即第 1 秒和第 2 秒。
+ * - 第 4 秒，提莫再次攻击艾希，艾希中毒状态又持续 2 秒，即第 4 秒和第 5 秒。
+ * 艾希在第 1、2、4、5 秒处于中毒状态，所以总中毒秒数是 4 。
+ *
+ * 示例 2：
+ * 输入：timeSeries = [1,2], duration = 2
+ * 输出：3
+ * 解释：提莫攻击对艾希的影响如下：
+ * - 第 1 秒，提莫攻击艾希并使其立即中毒。中毒状态会维持 2 秒，即第 1 秒和第 2 秒。
+ * - 第 2 秒，提莫再次攻击艾希，并重置中毒计时器，艾希中毒状态需要持续 2 秒，即第 2 秒和第 3 秒。
+ * 艾希在第 1、2、3 秒处于中毒状态，所以总中毒秒数是 3 。
+ *
+ * 提示：
+ * 1 <= timeSeries.length <= 104
+ * 0 <= timeSeries[i], duration <= 107
+ * timeSeries 按 非递减 顺序排列
+ * */
+const findPoisonedDuration = (timeSeries, duration) => {
+    // 方法1：
+
+    // let source = 0;
+    // for (let i = 1; i < timeSeries.length; i++) {
+    //     let currentTime = timeSeries[i] - timeSeries[i - 1];
+    //     if(currentTime >= duration) {
+    //         source += duration
+    //     } else {
+    //         source += currentTime
+    //     }
+    // }
+    // source += duration
+    // return source
+
+    // 方法2：
+
+    let last = -1;
+    let sum = 0;
+    for (let v of timeSeries) {
+        const e = v + duration - 1;
+        sum += last < v ? duration : e - last;
+        last = e;
+    }
+    return sum;
+}
+// console.log(findPoisonedDuration([1,2], 2))
 
 /**
  * 496. 下一个更大元素 I
@@ -504,274 +657,6 @@ const findRelativeRanks = (score) => {
 // console.log(findRelativeRanks([10, 3, 8, 9, 4]))
 
 /**
- * 575. 分糖果
- *
- * Alice 有 n 枚糖，其中第 i 枚糖的类型为 candyType[i] 。Alice 注意到她的体重正在增长，所以前去拜访了一位医生。
- *
- * 医生建议 Alice 要少摄入糖分，只吃掉她所有糖的 n / 2 即可（n 是一个偶数）。Alice 非常喜欢这些糖，她想要在遵循医生建议的情况下，尽可能吃到最多不同种类的糖。
- *
- * 给你一个长度为 n 的整数数组 candyType ，返回： Alice 在仅吃掉 n / 2 枚糖的情况下，可以吃到糖的 最多 种类数。
- *
- * 示例 1：
- * 输入：candyType = [1,1,2,2,3,3]
- * 输出：3
- * 解释：Alice 只能吃 6 / 2 = 3 枚糖，由于只有 3 种糖，她可以每种吃一枚。
- *
- * 示例 2：
- * 输入：candyType = [1,1,2,3]
- * 输出：2
- * 解释：Alice 只能吃 4 / 2 = 2 枚糖，不管她选择吃的种类是 [1,2]、[1,3] 还是 [2,3]，她只能吃到两种不同类的糖。
- *
- * 示例 3：
- * 输入：candyType = [6,6,6,6]
- * 输出：1
- * 解释：Alice 只能吃 4 / 2 = 2 枚糖，尽管她能吃 2 枚，但只能吃到 1 种糖。
- *
- * 提示：
- * n == candyType.length
- * 2 <= n <= 104
- * n 是一个偶数
- * -105 <= candyType[i] <= 105
- * */
-const distributeCandies = (candyType) => {
-    // let n = candyType.length / 2;
-    // 两种去重方法，取其中一种
-    // let arr = Array.from(new Set(candyType));
-    // let arr = [...new Set(candyType)]
-    // return arr.length > n ? n : arr.length;
-}
-// console.log(distributeCandies(([6, 6, 6, 6])))
-
-/**
- * 682. 棒球比赛
- *
- * 你现在是一场采用特殊赛制棒球比赛的记录员。这场比赛由若干回合组成，过去几回合的得分可能会影响以后几回合的得分。
- *
- * 比赛开始时，记录是空白的。你会得到一个记录操作的字符串列表 ops，其中 ops[i] 是你需要记录的第 i 项操作，ops 遵循下述规则：
- *
- * 整数 x - 表示本回合新获得分数 x
- * "+" - 表示本回合新获得的得分是前两次得分的总和。题目数据保证记录此操作时前面总是存在两个有效的分数。
- * "D" - 表示本回合新获得的得分是前一次得分的两倍。题目数据保证记录此操作时前面总是存在一个有效的分数。
- * "C" - 表示前一次得分无效，将其从记录中移除。题目数据保证记录此操作时前面总是存在一个有效的分数。
- * 请你返回记录中所有得分的总和。
- *
- * 示例 1：
- * 输入：ops = ["5","2","C","D","+"]
- * 输出：30
- * 解释：
- * "5" - 记录加 5 ，记录现在是 [5]
- * "2" - 记录加 2 ，记录现在是 [5, 2]
- * "C" - 使前一次得分的记录无效并将其移除，记录现在是 [5].
- * "D" - 记录加 2 * 5 = 10 ，记录现在是 [5, 10].
- * "+" - 记录加 5 + 10 = 15 ，记录现在是 [5, 10, 15].
- * 所有得分的总和 5 + 10 + 15 = 30
- *
- * 示例 2：
- * 输入：ops = ["5","-2","4","C","D","9","+","+"]
- * 输出：27
- * 解释：
- * "5" - 记录加 5 ，记录现在是 [5]
- * "-2" - 记录加 -2 ，记录现在是 [5, -2]
- * "4" - 记录加 4 ，记录现在是 [5, -2, 4]
- * "C" - 使前一次得分的记录无效并将其移除，记录现在是 [5, -2]
- * "D" - 记录加 2 * -2 = -4 ，记录现在是 [5, -2, -4]
- * "9" - 记录加 9 ，记录现在是 [5, -2, -4, 9]
- * "+" - 记录加 -4 + 9 = 5 ，记录现在是 [5, -2, -4, 9, 5]
- * "+" - 记录加 9 + 5 = 14 ，记录现在是 [5, -2, -4, 9, 5, 14]
- * 所有得分的总和 5 + -2 + -4 + 9 + 5 + 14 = 27
- *
- * 输入：ops = ["1"]
- * 输出：1
- *
- * 提示：
- * 1 <= ops.length <= 1000
- * ops[i] 为 "C"、"D"、"+"，或者一个表示整数的字符串。整数范围是 [-3 * 104, 3 * 104]
- * 对于 "+" 操作，题目数据保证记录此操作时前面总是存在两个有效的分数
- * 对于 "C" 和 "D" 操作，题目数据保证记录此操作时前面总是存在一个有效的分数
- * */
-const calPoints = (operations) => {
-    // 方法1：
-
-    // if (operations.length === 1) return operations[0];
-    // let newList = [];
-    // for (let i = 0; i < operations.length; i++) {
-    //     let account = operations[i];
-    //     if (Number(account)) {
-    //         newList.push(Number(account))
-    //     } else if (account === 'D') {
-    //         newList.push(newList[newList.length - 1] * 2)
-    //     } else if (account === '+') {
-    //         newList.push(newList[newList.length - 1] + newList[newList.length - 2])
-    //     } else if (account === 'C') {
-    //         newList.pop();
-    //     }
-    // }
-    // return newList.reduce((prev, curr) => prev + curr, 0)
-
-    // 方法2：
-
-    // let res = []
-    // for(let i=0;i<operations.length;i++){
-    //     switch (operations[i]){
-    //         case "C":
-    //             res.pop()
-    //             break
-    //         case "D":
-    //             res.push(+res[res.length-1]*2)
-    //             break
-    //         case "+":
-    //             res.push(+res[res.length-1] + +res[res.length-2])
-    //             break
-    //         default:
-    //             res.push(+operations[i])
-    //     }
-    // }
-    // return res.reduce((prev,next) => prev+next,0)
-}
-// console.log(calPoints(["1","C"]))
-
-/**
- * 495. 提莫攻击
- *
- * 当提莫攻击艾希，艾希的中毒状态正好持续 duration 秒。
- *
- * 正式地讲，提莫在 t 发起攻击意味着艾希在时间区间 [t, t + duration - 1]（含 t 和 t + duration - 1）处于中毒状态。如果提莫在中毒影响结束 前 再次攻击，中毒状态计时器将会 重置 ，在新的攻击之后，中毒影响将会在 duration 秒后结束。
- *
- * 给你一个 非递减 的整数数组 timeSeries ，其中 timeSeries[i] 表示提莫在 timeSeries[i] 秒时对艾希发起攻击，以及一个表示中毒持续时间的整数 duration 。
- *
- * 返回艾希处于中毒状态的 总 秒数。
- *
- * 示例 1：
- * 输入：timeSeries = [1,4], duration = 2
- * 输出：4
- * 解释：提莫攻击对艾希的影响如下：
- * - 第 1 秒，提莫攻击艾希并使其立即中毒。中毒状态会维持 2 秒，即第 1 秒和第 2 秒。
- * - 第 4 秒，提莫再次攻击艾希，艾希中毒状态又持续 2 秒，即第 4 秒和第 5 秒。
- * 艾希在第 1、2、4、5 秒处于中毒状态，所以总中毒秒数是 4 。
- *
- * 示例 2：
- * 输入：timeSeries = [1,2], duration = 2
- * 输出：3
- * 解释：提莫攻击对艾希的影响如下：
- * - 第 1 秒，提莫攻击艾希并使其立即中毒。中毒状态会维持 2 秒，即第 1 秒和第 2 秒。
- * - 第 2 秒，提莫再次攻击艾希，并重置中毒计时器，艾希中毒状态需要持续 2 秒，即第 2 秒和第 3 秒。
- * 艾希在第 1、2、3 秒处于中毒状态，所以总中毒秒数是 3 。
- *
- * 提示：
- * 1 <= timeSeries.length <= 104
- * 0 <= timeSeries[i], duration <= 107
- * timeSeries 按 非递减 顺序排列
- * */
-const findPoisonedDuration = (timeSeries, duration) => {
-    // 方法1：
-
-    // let source = 0;
-    // for (let i = 1; i < timeSeries.length; i++) {
-    //     let currentTime = timeSeries[i] - timeSeries[i - 1];
-    //     if(currentTime >= duration) {
-    //         source += duration
-    //     } else {
-    //         source += currentTime
-    //     }
-    // }
-    // source += duration
-    // return source
-
-    // 方法2：
-
-    let last = -1;
-    let sum = 0;
-    for (let v of timeSeries) {
-        const e = v + duration - 1;
-        sum += last < v ? duration : e - last;
-        last = e;
-    }
-    return sum;
-}
-// console.log(findPoisonedDuration([1,2], 2))
-
-/**
- * 697. 数组的度
- *
- * 给定一个非空且只包含非负数的整数数组 nums，数组的 度 的定义是指数组里任一元素出现频数的最大值。
- *
- * 你的任务是在 nums 中找到与 nums 拥有相同大小的度的最短连续子数组，返回其长度。
- *
- * 示例 1：
- * 输入：nums = [1,2,2,3,1]
- * 输出：2
- * 解释：
- * 输入数组的度是 2 ，因为元素 1 和 2 的出现频数最大，均为 2 。
- * 连续子数组里面拥有相同度的有如下所示：
- * [1, 2, 2, 3, 1], [1, 2, 2, 3], [2, 2, 3, 1], [1, 2, 2], [2, 2, 3], [2, 2]
- * 最短连续子数组 [2, 2] 的长度为 2 ，所以返回 2 。
- *
- * 示例 2：
- * 输入：nums = [1,2,2,3,1,4,2]
- * 输出：6
- * 解释：
- * 数组的度是 3 ，因为元素 2 重复出现 3 次。
- * 所以 [2,2,3,1,4,2] 是最短子数组，因此返回 6 。
- *
- * 提示：
- * nums.length 在 1 到 50,000 范围内。
- * nums[i] 是一个在 0 到 49,999 范围内的整数。
- * */
-const findShortestSubArray = (nums) => {
-    // 方法1：找出 nums 中出现次数最多的元素组成数组，然后循环数组找出每个元素最短连续子数组
-
-    // let obj = {}, max = 0, maxEle;
-    // for (let i = 0; i < nums.length; i++) {
-    //     let val = nums[i]
-    //     obj[val] === undefined ? obj[val] = 1 : obj[val]++;
-    //     // 当前循环中直接比较出现次数最大值
-    //     if (obj[val] > max) {
-    //         max = obj[val]
-    //         maxEle = val
-    //     }
-    // }
-    // // nums 中出现次数最多的元素组成的数组
-    // let arr = Object.keys(obj).filter(key=> obj[key]=== max);
-    // let dataIndex = 0;
-    // for (let i = 0; i < arr.length; i++) {
-    //     let minIndex = nums.indexOf(Number(arr[i]));
-    //     let maxIndex = nums.lastIndexOf(Number(arr[i]));
-    //     if(!dataIndex || dataIndex > (maxIndex - minIndex + 1)) {
-    //         dataIndex = maxIndex - minIndex + 1
-    //     }
-    // }
-    // return dataIndex;
-
-    // 方法2：
-
-    let len = nums.length;
-    let map = {};
-    // map 中每一项记录的是 nums 数组中每个元素出现的的下标
-    for (let i = 0; i < len; i++) {
-        let value = nums[i];
-        if (!map[value]) {
-            map[value] = [];
-        }
-        map[value].push(i);
-    }
-    // 判断 map 中每项数组长度，取最长的然后判断差值
-    let max = 0;
-    for (let key in map) {
-        max = Math.max(map[key].length, max)
-    }
-    if (max === 1) return 1;
-    let result = 50000;
-    for (let key in map) {
-        let idx = map[key]
-        if (idx.length === max) {
-            result = Math.min(result, idx[idx.length - 1] - idx[0] + 1)
-        }
-    }
-    return result;
-}
-// console.log(findShortestSubArray([1, 3, 2, 2, 3, 1]))
-
-/**
  * 566. 重塑矩阵
  *
  * 在 MATLAB 中，有一个非常有用的函数 reshape ，它可以将一个 m x n 矩阵重塑为另一个大小不同（r x c）的新矩阵，但保留其原始数据。
@@ -821,46 +706,43 @@ const findShortestSubArray = (nums) => {
 // console.log(matrixReshape([[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16],[17,18,19,20]], 2, 4))
 
 /**
- * 674. 最长连续递增序列
+ * 575. 分糖果
  *
- * 给定一个未经排序的整数数组，找到最长且 连续递增的子序列，并返回该序列的长度。
+ * Alice 有 n 枚糖，其中第 i 枚糖的类型为 candyType[i] 。Alice 注意到她的体重正在增长，所以前去拜访了一位医生。
  *
- * 连续递增的子序列 可以由两个下标 l 和 r（l < r）确定，如果对于每个 l <= i < r，都有 nums[i] < nums[i + 1] ，
- * 那么子序列 [nums[l], nums[l + 1], ..., nums[r - 1], nums[r]] 就是连续递增子序列。
+ * 医生建议 Alice 要少摄入糖分，只吃掉她所有糖的 n / 2 即可（n 是一个偶数）。Alice 非常喜欢这些糖，她想要在遵循医生建议的情况下，尽可能吃到最多不同种类的糖。
+ *
+ * 给你一个长度为 n 的整数数组 candyType ，返回： Alice 在仅吃掉 n / 2 枚糖的情况下，可以吃到糖的 最多 种类数。
  *
  * 示例 1：
- * 输入：nums = [1,3,5,4,7]
+ * 输入：candyType = [1,1,2,2,3,3]
  * 输出：3
- * 解释：最长连续递增序列是 [1,3,5], 长度为3。
- * 尽管 [1,3,5,7] 也是升序的子序列, 但它不是连续的，因为 5 和 7 在原数组里被 4 隔开。
+ * 解释：Alice 只能吃 6 / 2 = 3 枚糖，由于只有 3 种糖，她可以每种吃一枚。
  *
  * 示例 2：
- * 输入：nums = [2,2,2,2,2]
+ * 输入：candyType = [1,1,2,3]
+ * 输出：2
+ * 解释：Alice 只能吃 4 / 2 = 2 枚糖，不管她选择吃的种类是 [1,2]、[1,3] 还是 [2,3]，她只能吃到两种不同类的糖。
+ *
+ * 示例 3：
+ * 输入：candyType = [6,6,6,6]
  * 输出：1
- * 解释：最长连续递增序列是 [2], 长度为1。
+ * 解释：Alice 只能吃 4 / 2 = 2 枚糖，尽管她能吃 2 枚，但只能吃到 1 种糖。
  *
  * 提示：
- *
- * 1 <= nums.length <= 104
- * -109 <= nums[i] <= 109
+ * n == candyType.length
+ * 2 <= n <= 104
+ * n 是一个偶数
+ * -105 <= candyType[i] <= 105
  * */
-const findLengthOfLCIS = (nums) => {
-    // 方法1：
-
-    if (nums.length === 0) return 0;
-    let result = 1;
-    let count = 1;
-    for (let i = 1; i < nums.length; i++) {
-        if (nums[i] > nums[i - 1]) {
-            count++
-        } else {
-            count = 1
-        }
-        if (count > result) result = count
-    }
-    return result;
+const distributeCandies = (candyType) => {
+    // let n = candyType.length / 2;
+    // 两种去重方法，取其中一种
+    // let arr = Array.from(new Set(candyType));
+    // let arr = [...new Set(candyType)]
+    // return arr.length > n ? n : arr.length;
 }
-// console.log(findLengthOfLCIS([1,3,5,4,7]))
+// console.log(distributeCandies(([6, 6, 6, 6])))
 
 /**
  * 594. 最长和谐子序列
@@ -926,155 +808,6 @@ const findLHS = (nums) => {
     return res;
 }
 // console.log(findLHS([1,3,2,2,5,2,3,7]))
-
-/**
- * 661. 图片平滑器
- *
- * 图像平滑器 是大小为 3 x 3 的过滤器，用于对图像的每个单元格平滑处理，平滑处理后单元格的值为该单元格的平均灰度。
- *
- * 每个单元格的  平均灰度 定义为：该单元格自身及其周围的 8 个单元格的平均值，结果需向下取整。（即，需要计算蓝色平滑器中 9 个单元格的平均值）。
- *
- * 如果一个单元格周围存在单元格缺失的情况，则计算平均灰度时不考虑缺失的单元格（即，需要计算红色平滑器中 4 个单元格的平均值）。
- *
- * 给你一个表示图像灰度的 m x n 整数矩阵 img ，返回对图像的每个单元格平滑处理后的图像 。
- *
- * 示例1：
- * 输入:img = [[1,1,1],[1,0,1],[1,1,1]]
- * 输出:[[0, 0, 0],[0, 0, 0], [0, 0, 0]]
- * 解释:
- * 对于点 (0,0), (0,2), (2,0), (2,2): 平均(3/4) = 平均(0.75) = 0
- * 对于点 (0,1), (1,0), (1,2), (2,1): 平均(5/6) = 平均(0.83333333) = 0
- * 对于点 (1,1): 平均(8/9) = 平均(0.88888889) = 0
- *
- * 示例2：
- * 输入: img = [[100,200,100],[200,50,200],[100,200,100]]
- * 输出: [[137,141,137],[141,138,141],[137,141,137]]
- * 解释:
- * 对于点 (0,0), (0,2), (2,0), (2,2): floor((100+200+200+50)/4) = floor(137.5) = 137
- * 对于点 (0,1), (1,0), (1,2), (2,1): floor((200+200+50+200+100+100)/6) = floor(141.666667) = 141
- * 对于点 (1,1): floor((50+200+200+200+200+100+100+100+100)/9) = floor(138.888889) = 138
- *
- * 提示:
- * m == img.length
- * n == img[i].length
- * 1 <= m, n <= 200
- * 0 <= img[i][j] <= 255
- * */
-const imageSmoother = (img) => {
-    const n = img.length;
-    const m = img[0].length;
-    const ans = new Array(n).fill(0).map(() => new Array(m).fill(0));
-    for (let i = 0; i < n; i++) {
-        for (let j = 0; j < m; j++) {
-            let sum = 0, num = 0;
-            for (let x = i - 1; x <= i + 1; x++) {
-                for (let y = j - 1; y <= j + 1; y++) {
-                    if (x >= 0 & x < n & y >= 0 & y < m) {
-                        sum += img[x][y]
-                        num++
-                    }
-                }
-            }
-            ans[i][j] = Math.floor(sum / num)
-        }
-    }
-    return ans;
-}
-// console.log(imageSmoother([[2,3,4],[5,6,7],[8,9,10],[11,12,13],[14,15,16]]));
-// console.log(imageSmoother([[100,200,100],[200,50,200],[100,200,100]]));
-
-/**
- * 463. 岛屿的周长
- *
- * 给定一个 row x col 的二维网格地图 grid ，其中：grid[i][j] = 1 表示陆地， grid[i][j] = 0 表示水域。
- *
- * 网格中的格子 水平和垂直 方向相连（对角线方向不相连）。整个网格被水完全包围，但其中恰好有一个岛屿（或者说，一个或多个表示陆地的格子相连组成的岛屿）。
- *
- * 岛屿中没有“湖”（“湖” 指水域在岛屿内部且不和岛屿周围的水相连）。格子是边长为 1 的正方形。网格为长方形，且宽度和高度均不超过 100 。计算这个岛屿的周长。
- *
- * 示例 1：
- * 输入：grid = [[0,1,0,0],[1,1,1,0],[0,1,0,0],[1,1,0,0]]
- * 输出：16
- * 解释：它的周长是上面图片中的 16 个黄色的边
- *
- * 示例 2：
- * 输入：grid = [[1]]
- * 输出：4
- *
- * 示例 3：
- * 输入：grid = [[1,0]]
- * 输出：4
- * */
-const islandPerimeter = (grid) => {
-    /**
-     * 思路：
-     * 1、遍历二位数组，首先判断是否为陆地
-     * 2、如果是陆地，则周长加4，还要进一步判断单元格右边和下边是否为陆地(因为左面和上面已经判断过了)，
-     *    如果下面和右边都是陆地，周长分别在减去2（重合部分要算两次）。
-     * 3、如果是海洋，则不需要处理。
-     * */
-    const m = grid.length;
-    const n = grid[0].length;
-    let res = 0;
-    for (let i = 0; i < m; i++) {
-        for (let j = 0; j < n; j++) {
-            if (grid[i][j] === 1) {
-                res += 4;
-                if (grid[i][j + 1] === 1) {
-                    // 判断右边是否为陆地
-                    res -= 2
-                }
-                //  判断下面是否为陆地，最后一行不用判断
-                if (grid[i + 1] && grid[i + 1][j] === 1) {
-                    res -= 2
-                }
-            }
-        }
-    }
-    return res;
-}
-// console.log(islandPerimeter([[1]]))
-
-/**
- * 455. 分发饼干
- *
- * 假设你是一位很棒的家长，想要给你的孩子们一些小饼干。但是，每个孩子最多只能给一块饼干。
- *
- * 对每个孩子 i，都有一个胃口值 g[i]，这是能让孩子们满足胃口的饼干的最小尺寸；并且每块饼干 j，都有一个尺寸 s[j] 。
- * 如果 s[j] >= g[i]，我们可以将这个饼干 j 分配给孩子 i ，这个孩子会得到满足。你的目标是尽可能满足越多数量的孩子，并输出这个最大数值。
- *
- * 示例 1:
- * 输入: g = [1,2,3], s = [1,1]
- * 输出: 1
- * 解释:
- * 你有三个孩子和两块小饼干，3个孩子的胃口值分别是：1,2,3。
- * 虽然你有两块小饼干，由于他们的尺寸都是1，你只能让胃口值是1的孩子满足。
- * 所以你应该输出1。
- *
- * 示例 2:
- * 输入: g = [1,2], s = [1,2,3]
- * 输出: 2
- * 解释:
- * 你有两个孩子和三块小饼干，2个孩子的胃口值分别是1,2。
- * 你拥有的饼干数量和尺寸都足以让所有孩子满足。
- * 所以你应该输出2.
- * */
-const findContentChildren = (g, s) => {
-    // 将小孩胃口 g 和饼干 s 按从小到大排序
-    let gSort = g.sort((a, b) => a - b);
-    let sSort = s.sort((a, b) => a - b);
-    let maxSatisfy = 0;
-    // 循环胃口值数组 sSort，
-    // 满足小孩胃口，则将胃口数组 gSort 中移除，并计数
-    for (let i = 0; i < sSort.length; i++) {
-        if (gSort[0] <= sSort[i]) {
-            maxSatisfy++;
-            gSort.shift();
-        }
-    }
-    return maxSatisfy;
-}
-// console.log(findContentChildren([10, 9, 8, 7], [5, 6, 7, 8]))
 
 /**
  * 598. 范围求和 II
@@ -1299,3 +1032,315 @@ const findErrorNums = (nums) => {
     // return res;
 }
 // console.log(findErrorNums([1,2,2,4]))
+
+/**
+ * 661. 图片平滑器
+ *
+ * 图像平滑器 是大小为 3 x 3 的过滤器，用于对图像的每个单元格平滑处理，平滑处理后单元格的值为该单元格的平均灰度。
+ *
+ * 每个单元格的  平均灰度 定义为：该单元格自身及其周围的 8 个单元格的平均值，结果需向下取整。（即，需要计算蓝色平滑器中 9 个单元格的平均值）。
+ *
+ * 如果一个单元格周围存在单元格缺失的情况，则计算平均灰度时不考虑缺失的单元格（即，需要计算红色平滑器中 4 个单元格的平均值）。
+ *
+ * 给你一个表示图像灰度的 m x n 整数矩阵 img ，返回对图像的每个单元格平滑处理后的图像 。
+ *
+ * 示例1：
+ * 输入:img = [[1,1,1],[1,0,1],[1,1,1]]
+ * 输出:[[0, 0, 0],[0, 0, 0], [0, 0, 0]]
+ * 解释:
+ * 对于点 (0,0), (0,2), (2,0), (2,2): 平均(3/4) = 平均(0.75) = 0
+ * 对于点 (0,1), (1,0), (1,2), (2,1): 平均(5/6) = 平均(0.83333333) = 0
+ * 对于点 (1,1): 平均(8/9) = 平均(0.88888889) = 0
+ *
+ * 示例2：
+ * 输入: img = [[100,200,100],[200,50,200],[100,200,100]]
+ * 输出: [[137,141,137],[141,138,141],[137,141,137]]
+ * 解释:
+ * 对于点 (0,0), (0,2), (2,0), (2,2): floor((100+200+200+50)/4) = floor(137.5) = 137
+ * 对于点 (0,1), (1,0), (1,2), (2,1): floor((200+200+50+200+100+100)/6) = floor(141.666667) = 141
+ * 对于点 (1,1): floor((50+200+200+200+200+100+100+100+100)/9) = floor(138.888889) = 138
+ *
+ * 提示:
+ * m == img.length
+ * n == img[i].length
+ * 1 <= m, n <= 200
+ * 0 <= img[i][j] <= 255
+ * */
+const imageSmoother = (img) => {
+    const n = img.length;
+    const m = img[0].length;
+    const ans = new Array(n).fill(0).map(() => new Array(m).fill(0));
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < m; j++) {
+            let sum = 0, num = 0;
+            for (let x = i - 1; x <= i + 1; x++) {
+                for (let y = j - 1; y <= j + 1; y++) {
+                    if (x >= 0 & x < n & y >= 0 & y < m) {
+                        sum += img[x][y]
+                        num++
+                    }
+                }
+            }
+            ans[i][j] = Math.floor(sum / num)
+        }
+    }
+    return ans;
+}
+// console.log(imageSmoother([[2,3,4],[5,6,7],[8,9,10],[11,12,13],[14,15,16]]));
+// console.log(imageSmoother([[100,200,100],[200,50,200],[100,200,100]]));
+
+/**
+ * 674. 最长连续递增序列
+ *
+ * 给定一个未经排序的整数数组，找到最长且 连续递增的子序列，并返回该序列的长度。
+ *
+ * 连续递增的子序列 可以由两个下标 l 和 r（l < r）确定，如果对于每个 l <= i < r，都有 nums[i] < nums[i + 1] ，
+ * 那么子序列 [nums[l], nums[l + 1], ..., nums[r - 1], nums[r]] 就是连续递增子序列。
+ *
+ * 示例 1：
+ * 输入：nums = [1,3,5,4,7]
+ * 输出：3
+ * 解释：最长连续递增序列是 [1,3,5], 长度为3。
+ * 尽管 [1,3,5,7] 也是升序的子序列, 但它不是连续的，因为 5 和 7 在原数组里被 4 隔开。
+ *
+ * 示例 2：
+ * 输入：nums = [2,2,2,2,2]
+ * 输出：1
+ * 解释：最长连续递增序列是 [2], 长度为1。
+ *
+ * 提示：
+ *
+ * 1 <= nums.length <= 104
+ * -109 <= nums[i] <= 109
+ * */
+const findLengthOfLCIS = (nums) => {
+    // 方法1：
+
+    if (nums.length === 0) return 0;
+    let result = 1;
+    let count = 1;
+    for (let i = 1; i < nums.length; i++) {
+        if (nums[i] > nums[i - 1]) {
+            count++
+        } else {
+            count = 1
+        }
+        if (count > result) result = count
+    }
+    return result;
+}
+// console.log(findLengthOfLCIS([1,3,5,4,7]))
+
+/**
+ * 682. 棒球比赛
+ *
+ * 你现在是一场采用特殊赛制棒球比赛的记录员。这场比赛由若干回合组成，过去几回合的得分可能会影响以后几回合的得分。
+ *
+ * 比赛开始时，记录是空白的。你会得到一个记录操作的字符串列表 ops，其中 ops[i] 是你需要记录的第 i 项操作，ops 遵循下述规则：
+ *
+ * 整数 x - 表示本回合新获得分数 x
+ * "+" - 表示本回合新获得的得分是前两次得分的总和。题目数据保证记录此操作时前面总是存在两个有效的分数。
+ * "D" - 表示本回合新获得的得分是前一次得分的两倍。题目数据保证记录此操作时前面总是存在一个有效的分数。
+ * "C" - 表示前一次得分无效，将其从记录中移除。题目数据保证记录此操作时前面总是存在一个有效的分数。
+ * 请你返回记录中所有得分的总和。
+ *
+ * 示例 1：
+ * 输入：ops = ["5","2","C","D","+"]
+ * 输出：30
+ * 解释：
+ * "5" - 记录加 5 ，记录现在是 [5]
+ * "2" - 记录加 2 ，记录现在是 [5, 2]
+ * "C" - 使前一次得分的记录无效并将其移除，记录现在是 [5].
+ * "D" - 记录加 2 * 5 = 10 ，记录现在是 [5, 10].
+ * "+" - 记录加 5 + 10 = 15 ，记录现在是 [5, 10, 15].
+ * 所有得分的总和 5 + 10 + 15 = 30
+ *
+ * 示例 2：
+ * 输入：ops = ["5","-2","4","C","D","9","+","+"]
+ * 输出：27
+ * 解释：
+ * "5" - 记录加 5 ，记录现在是 [5]
+ * "-2" - 记录加 -2 ，记录现在是 [5, -2]
+ * "4" - 记录加 4 ，记录现在是 [5, -2, 4]
+ * "C" - 使前一次得分的记录无效并将其移除，记录现在是 [5, -2]
+ * "D" - 记录加 2 * -2 = -4 ，记录现在是 [5, -2, -4]
+ * "9" - 记录加 9 ，记录现在是 [5, -2, -4, 9]
+ * "+" - 记录加 -4 + 9 = 5 ，记录现在是 [5, -2, -4, 9, 5]
+ * "+" - 记录加 9 + 5 = 14 ，记录现在是 [5, -2, -4, 9, 5, 14]
+ * 所有得分的总和 5 + -2 + -4 + 9 + 5 + 14 = 27
+ *
+ * 输入：ops = ["1"]
+ * 输出：1
+ *
+ * 提示：
+ * 1 <= ops.length <= 1000
+ * ops[i] 为 "C"、"D"、"+"，或者一个表示整数的字符串。整数范围是 [-3 * 104, 3 * 104]
+ * 对于 "+" 操作，题目数据保证记录此操作时前面总是存在两个有效的分数
+ * 对于 "C" 和 "D" 操作，题目数据保证记录此操作时前面总是存在一个有效的分数
+ * */
+const calPoints = (operations) => {
+    // 方法1：
+
+    // if (operations.length === 1) return operations[0];
+    // let newList = [];
+    // for (let i = 0; i < operations.length; i++) {
+    //     let account = operations[i];
+    //     if (Number(account)) {
+    //         newList.push(Number(account))
+    //     } else if (account === 'D') {
+    //         newList.push(newList[newList.length - 1] * 2)
+    //     } else if (account === '+') {
+    //         newList.push(newList[newList.length - 1] + newList[newList.length - 2])
+    //     } else if (account === 'C') {
+    //         newList.pop();
+    //     }
+    // }
+    // return newList.reduce((prev, curr) => prev + curr, 0)
+
+    // 方法2：
+
+    // let res = []
+    // for(let i=0;i<operations.length;i++){
+    //     switch (operations[i]){
+    //         case "C":
+    //             res.pop()
+    //             break
+    //         case "D":
+    //             res.push(+res[res.length-1]*2)
+    //             break
+    //         case "+":
+    //             res.push(+res[res.length-1] + +res[res.length-2])
+    //             break
+    //         default:
+    //             res.push(+operations[i])
+    //     }
+    // }
+    // return res.reduce((prev,next) => prev+next,0)
+}
+// console.log(calPoints(["1","C"]))
+
+/**
+ * 697. 数组的度
+ *
+ * 给定一个非空且只包含非负数的整数数组 nums，数组的 度 的定义是指数组里任一元素出现频数的最大值。
+ *
+ * 你的任务是在 nums 中找到与 nums 拥有相同大小的度的最短连续子数组，返回其长度。
+ *
+ * 示例 1：
+ * 输入：nums = [1,2,2,3,1]
+ * 输出：2
+ * 解释：
+ * 输入数组的度是 2 ，因为元素 1 和 2 的出现频数最大，均为 2 。
+ * 连续子数组里面拥有相同度的有如下所示：
+ * [1, 2, 2, 3, 1], [1, 2, 2, 3], [2, 2, 3, 1], [1, 2, 2], [2, 2, 3], [2, 2]
+ * 最短连续子数组 [2, 2] 的长度为 2 ，所以返回 2 。
+ *
+ * 示例 2：
+ * 输入：nums = [1,2,2,3,1,4,2]
+ * 输出：6
+ * 解释：
+ * 数组的度是 3 ，因为元素 2 重复出现 3 次。
+ * 所以 [2,2,3,1,4,2] 是最短子数组，因此返回 6 。
+ *
+ * 提示：
+ * nums.length 在 1 到 50,000 范围内。
+ * nums[i] 是一个在 0 到 49,999 范围内的整数。
+ * */
+const findShortestSubArray = (nums) => {
+    // 方法1：找出 nums 中出现次数最多的元素组成数组，然后循环数组找出每个元素最短连续子数组
+
+    // let obj = {}, max = 0, maxEle;
+    // for (let i = 0; i < nums.length; i++) {
+    //     let val = nums[i]
+    //     obj[val] === undefined ? obj[val] = 1 : obj[val]++;
+    //     // 当前循环中直接比较出现次数最大值
+    //     if (obj[val] > max) {
+    //         max = obj[val]
+    //         maxEle = val
+    //     }
+    // }
+    // // nums 中出现次数最多的元素组成的数组
+    // let arr = Object.keys(obj).filter(key=> obj[key]=== max);
+    // let dataIndex = 0;
+    // for (let i = 0; i < arr.length; i++) {
+    //     let minIndex = nums.indexOf(Number(arr[i]));
+    //     let maxIndex = nums.lastIndexOf(Number(arr[i]));
+    //     if(!dataIndex || dataIndex > (maxIndex - minIndex + 1)) {
+    //         dataIndex = maxIndex - minIndex + 1
+    //     }
+    // }
+    // return dataIndex;
+
+    // 方法2：
+
+    let len = nums.length;
+    let map = {};
+    // map 中每一项记录的是 nums 数组中每个元素出现的的下标
+    for (let i = 0; i < len; i++) {
+        let value = nums[i];
+        if (!map[value]) {
+            map[value] = [];
+        }
+        map[value].push(i);
+    }
+    // 判断 map 中每项数组长度，取最长的然后判断差值
+    let max = 0;
+    for (let key in map) {
+        max = Math.max(map[key].length, max)
+    }
+    if (max === 1) return 1;
+    let result = 50000;
+    for (let key in map) {
+        let idx = map[key]
+        if (idx.length === max) {
+            result = Math.min(result, idx[idx.length - 1] - idx[0] + 1)
+        }
+    }
+    return result;
+}
+// console.log(findShortestSubArray([1, 3, 2, 2, 3, 1]))
+
+/**
+ * 746. 使用最小花费爬楼梯
+ *
+ * 给你一个整数数组 cost ，其中 cost[i] 是从楼梯第 i 个台阶向上爬需要支付的费用。一旦你支付此费用，即可选择向上爬一个或者两个台阶。
+ *
+ * 你可以选择从下标为 0 或下标为 1 的台阶开始爬楼梯。
+ *
+ * 请你计算并返回达到楼梯顶部的最低花费。
+ *
+ * 示例 1：
+ * 输入：cost = [10,15,20]
+ * 输出：15
+ * 解释：你将从下标为 1 的台阶开始。
+ * - 支付 15 ，向上爬两个台阶，到达楼梯顶部。
+ * 总花费为 15 。
+ *
+ * 示例 2：
+ * 输入：cost = [1,100,1,1,1,100,1,1,100,1]
+ * 输出：6
+ * 解释：你将从下标为 0 的台阶开始。
+ * - 支付 1 ，向上爬两个台阶，到达下标为 2 的台阶。
+ * - 支付 1 ，向上爬两个台阶，到达下标为 4 的台阶。
+ * - 支付 1 ，向上爬两个台阶，到达下标为 6 的台阶。
+ * - 支付 1 ，向上爬一个台阶，到达下标为 7 的台阶。
+ * - 支付 1 ，向上爬两个台阶，到达下标为 9 的台阶。
+ * - 支付 1 ，向上爬一个台阶，到达楼梯顶部。
+ * 总花费为 6 。
+ *
+ * 提示：
+ *
+ * 2 <= cost.length <= 1000
+ * 0 <= cost[i] <= 999
+ * */
+const minCostClimbingStairs = (cost) => {
+    let n = cost.length;
+    let dp = [];
+    dp[0] = 0;
+    dp[1] = 0;
+    for (let i = 2; i <= n; i++) {
+        dp[i] = Math.min(dp[i - 1] + cost[i - 1], dp[i - 2] + cost[i - 2]);
+    }
+    return dp[n]
+}
+// console.log(minCostClimbingStairs([1, 100, 1, 1, 1, 100, 1, 1, 100, 1]))
