@@ -1499,6 +1499,48 @@ const sortedSquares = (nums) => {
 // console.log(sortedSquares([-4,-1,0,3,10]))
 
 /**
+ * 1002. 查找共用字符
+ *
+ * 给你一个字符串数组 words ，请你找出所有在 words 的每个字符串中都出现的共用字符（ 包括重复字符），并以数组形式返回。你可以按 任意顺序 返回答案。
+ *
+ * 示例 1：
+ * 输入：words = ["bella","label","roller"]
+ * 输出：["e","l","l"]
+ *
+ * 示例 2：
+ * 输入：words = ["cool","lock","cook"]
+ * 输出：["c","o"]
+ *
+ * 提示：
+ * 1 <= words.length <= 100
+ * 1 <= words[i].length <= 100
+ * words[i] 由小写英文字母组成
+ * */
+const commonChars = (words) => {
+    let res = [], word = words[0];
+    for (let s of word) {
+        if(words.every(item => item.includes(s))) {
+            words = words.map(item => item.replace(s, ''))
+            console.log(s, 'sssss')
+            console.log(words, 'wordss')
+            res.push(s)
+        }
+    }
+    return res;
+    // let result = [];
+    // let mapStr = new Map();
+    // let word = words[0];
+    // for (let i = 0; i < word.length; i++) {
+    //     if(!mapStr.has(word[i])) {
+    //         mapStr.set(word[i], 1)
+    //     } else {
+    //         mapStr.set(word[i], mapStr.get(word[i]) + 1)
+    //     }
+    // }
+}
+// console.log(commonChars(["bella","label","roller"]))
+
+/**
  * 1046. 最后一块石头的重量
  *
  * 有一堆石头，每块石头的重量都是正整数。
@@ -1536,4 +1578,4 @@ const lastStoneWeight = (stones) => {
     }
     return stones[0] || 0;
 };
-console.log(lastStoneWeight([2,7,4,1,8,1]))
+// console.log(lastStoneWeight([2,7,4,1,8,1]))
