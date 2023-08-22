@@ -1335,10 +1335,10 @@ const search = (nums, target) => {
     let left = 0, right = nums.length;
     while (left < right) {
         let mid = left + Math.floor((left + right) / 2)
-        if(nums[mid] === target) return mid;
-        if(nums[mid] < target) {
+        if (nums[mid] === target) return mid;
+        if (nums[mid] < target) {
             left = mid + 1
-        } else if(nums[mid] > target) {
+        } else if (nums[mid] > target) {
             right = mid
         }
     }
@@ -1399,7 +1399,7 @@ const pivotIndex = (nums) => {
     let right = nums.reduce((pre, num) => pre + num, 0)
     for (let i = 0; i < nums.length; i++) {
         right -= nums[i];
-        if(left === right) return i;
+        if (left === right) return i;
         left += nums[i];
     }
     return -1;
@@ -1485,7 +1485,7 @@ const minCostClimbingStairs = (cost) => {
  * words[i] 由小写英文字母组成
  * */
 const uniqueMorseRepresentations = (words) => {
-    let passWord = [".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."]
+    let passWord = [".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.."]
 
     // 方法1：
     // let s = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
@@ -1567,13 +1567,13 @@ const shortestToChar = (s, c) => {
     let p = s.indexOf(c);
     let q = s.indexOf(c, p + 1);
     for (let i = 0; i < s.length; i++) {
-        if(q === -1) {
-            ret[i] =  Math.abs(i - p);
+        if (q === -1) {
+            ret[i] = Math.abs(i - p);
         } else if (i <= p) {
             ret[i] = p - i;
         } else if (i > p && i < q) {
             ret[i] = Math.min(i - p, q - i);
-        } else if (i === q){
+        } else if (i === q) {
             ret[i] = 0;
             p = q;
             q = s.indexOf(c, p + 1); // 当匹配到最后一个 c 的时候，q 则等于 s.length
@@ -1582,6 +1582,63 @@ const shortestToChar = (s, c) => {
     return ret;
 }
 // console.log(shortestToChar('loveleetcode', 'e'))
+
+/**
+ * 860. 柠檬水找零
+ *
+ * 在柠檬水摊上，每一杯柠檬水的售价为 5 美元。顾客排队购买你的产品，（按账单 bills 支付的顺序）一次购买一杯。
+ * 每位顾客只买一杯柠檬水，然后向你付 5 美元、10 美元或 20 美元。你必须给每个顾客正确找零，也就是说净交易是每位顾客向你支付 5 美元。
+ * 注意，一开始你手头没有任何零钱。
+ * 给你一个整数数组 bills ，其中 bills[i] 是第 i 位顾客付的账。如果你能给每位顾客正确找零，返回 true ，否则返回 false 。
+ *
+ * 示例 1：
+ * 输入：bills = [5,5,5,10,20]
+ * 输出：true
+ * 解释：
+ * 前 3 位顾客那里，我们按顺序收取 3 张 5 美元的钞票。
+ * 第 4 位顾客那里，我们收取一张 10 美元的钞票，并返还 5 美元。
+ * 第 5 位顾客那里，我们找还一张 10 美元的钞票和一张 5 美元的钞票。
+ * 由于所有客户都得到了正确的找零，所以我们输出 true。
+ *
+ * 示例 2：
+ * 输入：bills = [5,5,10,10,20]
+ * 输出：false
+ * 解释：
+ * 前 2 位顾客那里，我们按顺序收取 2 张 5 美元的钞票。
+ * 对于接下来的 2 位顾客，我们收取一张 10 美元的钞票，然后返还 5 美元。
+ * 对于最后一位顾客，我们无法退回 15 美元，因为我们现在只有两张 10 美元的钞票。
+ * 由于不是每位顾客都得到了正确的找零，所以答案是 false。
+ *
+ * 提示：
+ * 1 <= bills.length <= 105
+ * bills[i] 不是 5 就是 10 或是 20
+ * */
+const lemonadeChange = (bills) => {
+    let five = 0, ten = 0;
+    for (let i = 0; i < bills.length; i++) {
+        if (bills[i] === 5) {
+            five++;
+        } else if (bills[i] === 10) {
+            if (five > 0) {
+                five--;
+                ten++;
+            } else {
+                return false;
+            }
+        } else {
+            if (five > 0 && ten > 0) {
+                five--;
+                ten--;
+            } else if (five >= 3) {
+                five -= 3
+            } else {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+console.log(lemonadeChange([5,5,5,10,20]))
 
 /**
  * 905. 按奇偶排序数组
@@ -1605,7 +1662,7 @@ const shortestToChar = (s, c) => {
 const sortArrayByParity = (nums) => {
     let result = [];
     for (let i = 0; i < nums.length; i++) {
-        if(nums[i] % 2 === 0) {
+        if (nums[i] % 2 === 0) {
             result.unshift(nums[i])
         } else {
             result.push(nums[i])
@@ -1640,7 +1697,7 @@ const sortArrayByParity = (nums) => {
 const sortArrayByParityII = (nums) => {
     let odd = [], even = [], result = [];
     for (let i = 0; i < nums.length; i++) {
-        if(nums[i] % 2 === 0) {
+        if (nums[i] % 2 === 0) {
             even.push(nums[i])
         } else {
             odd.push(nums[i])
@@ -1763,7 +1820,7 @@ const sortedSquares = (nums) => {
     let left = 0, right = n - 1, k = n - 1;
     let result = [];
     while (left <= right) {
-        if(Math.abs(nums[left]) >= Math.abs(nums[right])) {
+        if (Math.abs(nums[left]) >= Math.abs(nums[right])) {
             result[k] = nums[left] * nums[left];
             left++;
         } else {
@@ -1797,7 +1854,7 @@ const sortedSquares = (nums) => {
 const commonChars = (words) => {
     let res = [], word = words[0];
     for (let s of word) {
-        if(words.every(item => item.includes(s))) {
+        if (words.every(item => item.includes(s))) {
             words = words.map(item => item.replace(s, ''))
             console.log(s, 'sssss')
             console.log(words, 'wordss')
@@ -1843,7 +1900,7 @@ const commonChars = (words) => {
  * 1 <= stones[i] <= 1000
  * */
 const lastStoneWeight = (stones) => {
-    while(stones.length > 1) {
+    while (stones.length > 1) {
         sortArr(stones)
         let a = stones.pop();
         let b = stones.pop();
@@ -1851,9 +1908,11 @@ const lastStoneWeight = (stones) => {
             stones.push(Math.abs(a - b));
         }
     }
+
     function sortArr(arr) {
-        return  arr.sort((a, b) => a - b);
+        return arr.sort((a, b) => a - b);
     }
+
     return stones[0] || 0;
 };
 // console.log(lastStoneWeight([2,7,4,1,8,1]))
