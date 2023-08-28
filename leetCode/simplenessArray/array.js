@@ -2074,6 +2074,87 @@ const sortedSquares = (nums) => {
 // console.log(sortedSquares([-4,-1,0,3,10]))
 
 /**
+ * 997. 找到小镇的法官
+ *
+ * 小镇里有 n 个人，按从 1 到 n 的顺序编号。传言称，这些人中有一个暗地里是小镇法官。
+ *
+ * 如果小镇法官真的存在，那么：
+ *
+ * 小镇法官不会信任任何人。
+ * 每个人（除了小镇法官）都信任这位小镇法官。
+ * 只有一个人同时满足属性 1 和属性 2 。
+ * 给你一个数组 trust ，其中 trust[i] = [ai, bi] 表示编号为 ai 的人信任编号为 bi 的人。
+ *
+ * 如果小镇法官存在并且可以确定他的身份，请返回该法官的编号；否则，返回 -1 。
+ *
+ * 示例 1：
+ * 输入：n = 2, trust = [[1,2]]
+ * 输出：2
+ *
+ * 示例 2：
+ * 输入：n = 3, trust = [[1,3],[2,3]]
+ * 输出：3
+ *
+ * 示例 3：
+ * 输入：n = 3, trust = [[1,3],[2,3],[3,1]]
+ * 输出：-1
+ *
+ * 提示：
+ * 1 <= n <= 1000
+ * 0 <= trust.length <= 104
+ * trust[i].length == 2
+ * trust 中的所有trust[i] = [ai, bi] 互不相同
+ * ai != bi
+ * 1 <= ai, bi <= n
+ * */
+const findJudge = (n, trust) => {
+    // if(trust.length === 1) return trust[0][1];
+    // if(n === 1) return 1;
+    // let map = new Map();
+    // for (let i = 0; i < trust.length; i++) {
+    //     if(!map.has(trust[i][1])) {
+    //         map.set(trust[i][1], 1)
+    //     } else {
+    //         map.set(trust[i][1], map.get(trust[i][1]) + 1)
+    //     }
+    // }
+    // // 获取每个人被信任的次数，需要满足以下条件
+    // // 1、次数不能出现相同的，否则返回 -1
+    // // 2、最大次数必须等于小镇人数 n - 1，因为 每个人（除了小镇法官）都信任这位小镇法官。
+    // // 3、获取最大次数对应小镇人编号，并且该编号不能出现在 trust[i][0] 中，因为 小镇法官不会信任任何人
+    // let arr = Array.from(map.values()).sort((a, b) => b - a);
+    // if (arr[0] === arr[1] || arr[0] !== n - 1) return -1;
+    // let judge = undefined;
+    // map.forEach((value, key) => {
+    //     if(value === arr[0]) {
+    //         judge = key
+    //     }
+    // })
+    // for (let i = 0; i < trust.length; i++) {
+    //     if (trust[i][0] === judge) return -1;
+    // }
+    // return judge;
+
+    // 方法2：有问题
+    // 1、统计每个人信任别人的次数，如果存在一个人被信任的次数为 n - 1，则该人就是法官
+    // 2、如果存在多个法官，则返回 -1
+    // if(trust.length === n) return -1;
+    // let arr = new Array(n).fill(0);
+    // for (let i = 0; i < trust.length; i++) {
+    //     arr[trust[i][1] - 1]++
+    // }
+    // for (let i = 0; i < trust.length; i++) {
+    //     arr[trust[i][0] - 1]--
+    // }
+    // console.log(arr)
+    // let res = arr.indexOf(n - 1);
+    // console.log(res, 'res')
+    // res = (res !== -1) ? res + 1 : -1;
+    // return res;
+}
+// console.log(findJudge(3, [[1,3],[2,3],[1,2]])) // 方法2 输出和方法一输出不统一
+
+/**
  * 1002. 查找共用字符
  *
  * 给你一个字符串数组 words ，请你找出所有在 words 的每个字符串中都出现的共用字符（ 包括重复字符），并以数组形式返回。你可以按 任意顺序 返回答案。
