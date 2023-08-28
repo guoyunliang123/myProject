@@ -1584,13 +1584,13 @@ const uniqueMorseRepresentations = (words) => {
  * widths 是长度为 26的数组。
  * widths[i] 值的范围在 [2, 10]。
  * */
-const numberOfLines = (widths, s) =>{
+const numberOfLines = (widths, s) => {
     // tips：当每一行结尾无法满足单词所需长度，则需新增一行，
     let line = 1;
     let count = 0
     for (let i = 0; i < s.length; i++) {
         count += widths[s[i].charCodeAt() - 97]
-        if(count > 100) {
+        if (count > 100) {
             line++;
             count = widths[s[i].charCodeAt() - 97];
         }
@@ -1621,7 +1621,7 @@ const numberOfLines = (widths, s) =>{
 const largestTriangleArea = (points) => {
     // 面积公式如图 img 文件夹下 812 图片
     let max = 0;
-    points.map(i => points.map(j => points.map (k => {
+    points.map(i => points.map(j => points.map(k => {
         max = Math.max(max, i[0] * (j[1] - k[1]) + j[0] * (k[1] - i[1]) + k[0] * (i[1] - j[1]))
     })))
     return max / 2;
@@ -1730,7 +1730,7 @@ const lemonadeChange = (bills) => {
         if (bills[i] === 5) {
             five++;
         } else if (bills[i] === 10) {
-            if(five === 0) return false
+            if (five === 0) return false
             five--;
             ten++;
         } else {
@@ -1800,7 +1800,7 @@ const fairCandySwap = (aliceSizes, bobSizes) => {
     // 遍历 aliceSizes，找到一个 bobSizes 中存在的值，与 target 相减，如果 setB 中存在，则返回
     for (let candy of aliceSizes) {
         const complement = candy - target;
-        if(setB.has(complement)) {
+        if (setB.has(complement)) {
             return [candy, complement];
         }
     }
@@ -1871,10 +1871,10 @@ const smallestRangeI = (nums, k) => {
     let target = k * 2;
     nums.sort((a, b) => a - b);
     let min = nums[0], max = nums[nums.length - 1];
-    if(max - min < target) return 0
+    if (max - min < target) return 0
     return max - min - target;
 }
-console.log(smallestRangeI([1, 3, 6], 3))
+// console.log(smallestRangeI([1, 3, 6], 3))
 
 /**
  * 922. 按奇偶排序数组 II
@@ -2017,7 +2017,7 @@ const largestPerimeter = (nums) => {
     nums.sort((a, b) => b - a);
     let count = 0;
     for (let i = 2; i < nums.length; i++) {
-        if(nums[i - 2] < nums[i - 1] + nums[i]) {
+        if (nums[i - 2] < nums[i - 1] + nums[i]) {
             count = nums[i - 2] + nums[i - 1] + nums[i]
             break;
         }
@@ -2116,6 +2116,42 @@ const commonChars = (words) => {
 // console.log(commonChars(["bella","label","roller"]))
 
 /**
+ * 1018. 可被 5 整除的二进制前缀
+ *
+ * 给定一个二进制数组 nums ( 索引从0开始 )。
+ *
+ * 我们将xi 定义为其二进制表示形式为子数组 nums[0..i] (从最高有效位到最低有效位)。
+ *
+ * 例如，如果 nums =[1,0,1] ，那么 x0 = 1, x1 = 2, 和 x2 = 5。
+ * 返回布尔值列表 answer，只有当 xi 可以被 5 整除时，答案 answer[i] 为 true，否则为 false。
+ *
+ * 示例 1：
+ * 输入：nums = [0,1,1]
+ * 输出：[true,false,false]
+ * 解释：
+ * 输入数字为 0, 01, 011；也就是十进制中的 0, 1, 3 。只有第一个数可以被 5 整除，因此 answer[0] 为 true 。
+ *
+ * 示例 2：
+ * 输入：nums = [1,1,1]
+ * 输出：[false,false,false]
+ *
+ * 提示：
+ * 1 <= nums.length <= 105
+ * nums[i] 仅为 0 或 1
+ * */
+const prefixesDivBy5 = (nums) => {
+    let total = 0;
+    let answer = [];
+    for (let i = 0; i < nums.length; i++) {
+        // 计算当前二进制转为十进制后取余
+        total = (total * 2 + nums[i]) % 10;
+        answer.push(total === 0 || total === 5);
+    }
+    return answer;
+}
+console.log(prefixesDivBy5([0,1,1,1,1,1]))
+
+/**
  * 1046. 最后一块石头的重量
  *
  * 有一堆石头，每块石头的重量都是正整数。
@@ -2198,7 +2234,7 @@ const heightChecker = (heights) => {
     let sort = [...heights].sort((a, b) => a - b);
     let count = 0;
     for (let i = 0; i < heights.length; i++) {
-        if(heights[i] !== sort[i]) {
+        if (heights[i] !== sort[i]) {
             console.log(111)
             count++
         }
