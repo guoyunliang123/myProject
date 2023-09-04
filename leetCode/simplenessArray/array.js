@@ -2112,6 +2112,69 @@ const sortArrayByParityII = (nums) => {
 // console.log(sortArrayByParityII([4,2,5,7]))
 
 /**
+ * 941. 有效的山脉数组
+ *
+ * 给定一个整数数组 arr，如果它是有效的山脉数组就返回 true，否则返回 false。
+ *
+ * 让我们回顾一下，如果 arr 满足下述条件，那么它是一个山脉数组：
+ *
+ * arr.length >= 3
+ * 在 0 < i < arr.length - 1 条件下，存在 i 使得：
+ * arr[0] < arr[1] < ... arr[i-1] < arr[i]
+ * arr[i] > arr[i+1] > ... > arr[arr.length - 1]
+ *
+ * 示例 1：
+ * 输入：arr = [2,1]
+ * 输出：false
+ *
+ * 示例 2：
+ * 输入：arr = [3,5,5]
+ * 输出：false
+ *
+ * 示例 3：
+ * 输入：arr = [0,3,2,1]
+ * 输出：true
+ *
+ * 提示：
+ * 1 <= arr.length <= 104
+ * 0 <= arr[i] <= 104
+ * */
+const validMountainArray = (arr) => {
+    // 方法1：
+    // let len = arr.length;
+    // if (len <= 2) return false;
+    // let maxIdx = arr.indexOf(Math.max(...arr));
+    // if (maxIdx === 0 || maxIdx === arr.length - 1) return false;
+    // let left = false, right = false;
+    // for (let i = 1; i <= maxIdx; i++) {
+    //     if (arr[i] - arr[i - 1] <= 0) {
+    //         left = true;
+    //     }
+    // }
+    // for (let i = maxIdx + 1; i < len; i++) {
+    //     if (arr[i] - arr[i - 1] >= 0) {
+    //         right = true;
+    //     }
+    // }
+    // return !(left || right);
+
+    // 方法2：
+    let len = arr.length;
+    if (len <= 2) return false;
+    let left = 0, right = len - 1;
+    while (left < len && arr[left] < arr[left + 1]) {
+        left++;
+    }
+    while (right > 0 && arr[right + 1] > arr[right]) {
+        right++;
+    }
+    return !(left === 0 || right === len - 1 || left === right)
+}
+// console.log(validMountainArray([3, 5, 5]))
+// console.log(validMountainArray([3, 5, 5]))
+// console.log(validMountainArray([0,1,2,3,4,5,6,7,8,9]))
+
+/**
  * 942. 增减字符串匹配
  *
  * 由范围 [0,n] 内所有整数组成的 n + 1 个整数的排列序列可以表示为长度为 n 的字符串 s ，其中:
@@ -2733,7 +2796,7 @@ const allCellsDistOrder = (rows, cols, rCenter, cCenter) => {
     res.sort((a, b) => {
         const x1 = Math.abs(a[0] - rCenter) + Math.abs(a[1] - cCenter)
         const x2 = Math.abs(b[0] - rCenter) + Math.abs(b[1] - cCenter)
-        return x1- x2
+        return x1 - x2
     })
     return res;
 }
