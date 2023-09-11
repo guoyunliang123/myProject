@@ -3183,3 +3183,84 @@ const relativeSortArray = (arr1, arr2) => {
     // return arr1;
 }
 // console.log(relativeSortArray([2,3,1,3,2,4,6,7,9,2,19], [2,1,4,3,9,6]))
+
+/**
+ * 1128. 等价多米诺骨牌对的数量
+ *
+ * 给你一个由一些多米诺骨牌组成的列表 dominoes。
+ *
+ * 如果其中某一张多米诺骨牌可以通过旋转 0 度或 180 度得到另一张多米诺骨牌，我们就认为这两张牌是等价的。
+ *
+ * 形式上，dominoes[i] = [a, b] 和 dominoes[j] = [c, d] 等价的前提是 a==c 且 b==d，或是 a==d 且 b==c。
+ *
+ * 在 0 <= i < j < dominoes.length 的前提下，找出满足 dominoes[i] 和 dominoes[j] 等价的骨牌对 (i, j) 的数量。
+ *
+ * 示例：
+ * 输入：dominoes = [[1,2],[2,1],[3,4],[5,6]]
+ * 输出：1
+ *
+ * 提示：
+ * 1 <= dominoes.length <= 40000
+ * 1 <= dominoes[i][j] <= 9
+ * */
+const numEquivDominoPairs = (dominoes) => {
+    // 方法1：暴力解法
+    // let len = dominoes.length;
+    // let count = 0;
+    // for (let i = 0; i < len; i++) {
+    //     for (let j = i + 1; j < len; j++) {
+    //         if ((dominoes[i][0] === dominoes[j][0] && dominoes[i][1] === dominoes[j][1]) || (dominoes[i][0] === dominoes[j][1] && dominoes[i][1] === dominoes[j][0])) {
+    //             count++;
+    //         }
+    //     }
+    // }
+    // return count;
+
+    // 方法2：
+    // let dp = new Array(10).fill(0).map(v=>new Array(10).fill(0));
+    //
+    // for (let dominoe of dominoes) {
+    //     let min = Math.min(dominoe[0], dominoe[1]);
+    //     let max = Math.max(dominoe[0], dominoe[1]);
+    //     dp[min][max]++;
+    // }
+    // let result = 0;
+    // for (let i = 0; i < 10; i++) {
+    //     for (let j = 1; j < 10; j++) {
+    //         let count = dp[i][j];
+    //         if (count > 1) {
+    //             result += (count * (count - 1) / 2)
+    //         }
+    //     }
+    // }
+    // return result;
+
+    // 方法3：
+    const hash = {};
+    for (let dom of dominoes) {
+        const [a, b] = dom;
+        const key = `${a},${b}`, alterKey = `${b},${a}`
+        if (hash[key] == null && hash[alterKey] == null) {
+            hash[key] = 1;
+        } else {
+            if (hash[key] != null) hash[key] += 1;
+            else hash[alterKey] += 1;
+        }
+    }
+    let res = 0;
+    Object.keys(hash).forEach(k => {
+        if (hash[k] > 1) {
+            res = res + sum(hash[k])
+        }
+    })
+    function sum(n) {
+        let count = 0;
+        while (n > 1) {
+            count += n - 1;
+            n--
+        }
+        return count;
+    }
+    return res;
+}
+// console.log(numEquivDominoPairs([[1,2],[1,2],[1,1],[1,2],[1,1],[2,1]]))
