@@ -3390,4 +3390,50 @@ const distanceBetweenBusStops = (distance, start, destination) => {
     return Math.min(left, right);
 };
 // console.log(distanceBetweenBusStops([1,2,3,4], 0, 1));
-console.log(distanceBetweenBusStops([7,10,1,12,11,14,5,0], 7, 2));
+// console.log(distanceBetweenBusStops([7,10,1,12,11,14,5,0], 7, 2));
+
+/**
+ * 1200. 最小绝对差
+ *
+ * 给你个整数数组 arr，其中每个元素都 不相同。
+ *
+ * 请你找到所有具有最小绝对差的元素对，并且按升序的顺序返回。
+ *
+ * 每对元素对 [a,b] 如下：
+ *
+ * a , b 均为数组 arr 中的元素
+ * a < b
+ * b - a 等于 arr 中任意两个元素的最小绝对差
+ *
+ * 示例 1：
+ * 输入：arr = [4,2,1,3]
+ * 输出：[[1,2],[2,3],[3,4]]
+ *
+ * 示例 2：
+ * 输入：arr = [1,3,6,10,15]
+ * 输出：[[1,3]]
+ *
+ * 示例 3：
+ * 输入：arr = [3,8,-10,23,19,-4,-14,27]
+ * 输出：[[-14,-10],[19,23],[23,27]]
+ *
+ * 提示：
+ * 2 <= arr.length <= 10^5
+ * -10^6 <= arr[i] <= 10^6
+ * */
+const minimumAbsDifference = (arr) => {
+    arr.sort((a, b) => a - b);
+    let min = Infinity, len = arr.length;
+    let result = [];
+    // 计算数组中最小差值
+    for (let i = 1; i < len; i++) {
+        min = Math.min(min, arr[i] - arr[i- 1])
+    }
+    for (let i = 0; i < len - 1; i++) {
+        if (arr[i + 1] - arr[i] === min) {
+            result.push([arr[i], arr[i + 1]])
+        }
+     }
+    return result;
+}
+// console.log(minimumAbsDifference([3,8,-10,23,19,-4,-14,27]));
