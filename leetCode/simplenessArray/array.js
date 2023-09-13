@@ -2162,10 +2162,12 @@ const hasGroupsSizeX = (deck) => {
     for (let i = 1; i < vals.length; i++) {
         min = gcd(min, vals[i])
     }
+
     // 获取最大公约数
-    function gcd(a, b){
+    function gcd(a, b) {
         return b !== 0 ? gcd(b, a % b) : a;
     }
+
     return min >= 2;
     // const res = new Set(vals);
     // // 解构获取 set 对象的第一个元素
@@ -2254,6 +2256,7 @@ const numUniqueEmails = (emails) => {
     for (let i = 0; i < len; i++) {
         emails[i] = emailRule(emails[i]);
     }
+
     function emailRule(strs) {
         let idx1 = strs.indexOf('@');
         let idx2 = strs.indexOf('+');
@@ -2264,9 +2267,10 @@ const numUniqueEmails = (emails) => {
         } else {
             localityName = strs.slice(0, idx1);
         }
-        const name = localityName.replace(/[.]/g,"")
+        const name = localityName.replace(/[.]/g, "")
         return name + '@' + domainName
     }
+
     return Array.from(new Set(emails)).length
 }
 // console.log(numUniqueEmails(["test.email+alex@leetcode.com", "test.e.mail+bob.cathy@leetcode.com", "testemail+david@lee.tcode.com"]))
@@ -3253,6 +3257,7 @@ const numEquivDominoPairs = (dominoes) => {
             res = res + sum(hash[k])
         }
     })
+
     function sum(n) {
         let count = 0;
         while (n > 1) {
@@ -3261,6 +3266,7 @@ const numEquivDominoPairs = (dominoes) => {
         }
         return count;
     }
+
     return res;
 }
 // console.log(numEquivDominoPairs([[1,2],[1,2],[1,1],[1,2],[1,1],[2,1]]))
@@ -3334,11 +3340,11 @@ const countCharacters = (words, chars) => {
         for (let j = 0; j < word.length; j++) {
             const ch = word[j].charCodeAt() - 'a'.charCodeAt();
             stateCopy[ch]++;
-            if(stateCopy[ch] > state[ch]) {
+            if (stateCopy[ch] > state[ch]) {
                 break;
             }
         }
-        if(j === word.length) {
+        if (j === word.length) {
             sum += j;
         }
     }
@@ -3427,13 +3433,83 @@ const minimumAbsDifference = (arr) => {
     let result = [];
     // 计算数组中最小差值
     for (let i = 1; i < len; i++) {
-        min = Math.min(min, arr[i] - arr[i- 1])
+        min = Math.min(min, arr[i] - arr[i - 1])
     }
     for (let i = 0; i < len - 1; i++) {
         if (arr[i + 1] - arr[i] === min) {
             result.push([arr[i], arr[i + 1]])
         }
-     }
+    }
     return result;
 }
 // console.log(minimumAbsDifference([3,8,-10,23,19,-4,-14,27]));
+
+/**
+ * 1207. 独一无二的出现次数
+ *
+ * 给你一个整数数组 arr，请你帮忙统计数组中每个数的出现次数。
+ *
+ * 如果每个数的出现次数都是独一无二的，就返回 true；否则返回 false。
+ *
+ * 示例 1：
+ * 输入：arr = [1,2,2,1,1,3]
+ * 输出：true
+ * 解释：在该数组中，1 出现了 3 次，2 出现了 2 次，3 只出现了 1 次。没有两个数的出现次数相同。
+ *
+ * 示例 2：
+ * 输入：arr = [1,2]
+ * 输出：false
+ *
+ * 示例 3：
+ * 输入：arr = [-3,0,1,-3,1,1,1,-3,10,0]
+ * 输出：true
+ *
+ * 提示：
+ * 1 <= arr.length <= 1000
+ * -1000 <= arr[i] <= 1000
+ * */
+const uniqueOccurrences = (arr) => {
+    // 方法1：
+    // let map = new Map(), len = arr.length;
+    // for (let i = 0; i < len; i++) {
+    //     if (!map.has(arr[i])) {
+    //         map.set(arr[i], 1)
+    //     } else {
+    //         map.set(arr[i], map.get(arr[i]) + 1)
+    //     }
+    // }
+    // return Array.from(map.values()).length === new Set(map.values()).size
+
+    // 方法2：
+    // if (arr.length === 0) return true;
+    // let map = arr.reduce((acc, cur) => {
+    //     if (acc.has(cur)) {
+    //         let times = acc.get(cur) + 1;
+    //         acc.set(cur, times)
+    //     } else {
+    //         acc.set(cur, 1)
+    //     }
+    //     return acc;
+    // }, new Map())
+    // let set = new Set(map.values());
+    // return set.size === map.size;
+
+    // 方法3：
+    let hashtable = {}
+    for (const a of arr) {
+        if (hashtable[a] != null) {
+            hashtable[a]++
+        } else {
+            hashtable[a] = 1
+        }
+    }
+    for (let k in hashtable) {
+        if (hashtable['K' + hashtable[k]] != null) {
+            return false
+        } else {
+            hashtable['K' + hashtable[k]] = 1
+        }
+    }
+    return true
+}
+// console.log(uniqueOccurrences([1, 2, 2, 1, 1, 2]))
