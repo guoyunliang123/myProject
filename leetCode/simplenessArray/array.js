@@ -3800,3 +3800,36 @@ const replaceElements = (arr) => {
     // return res;
 };
 // console.log(replaceElements([17,18,5,4,6,1]));
+
+/**
+ * 1304. 和为零的 N 个不同整数
+ *
+ * 给你一个整数 n，请你返回 任意 一个由 n 个 各不相同 的整数组成的数组，并且这 n 个数相加和为 0 。
+ *
+ * 示例 1：
+ * 输入：n = 5
+ * 输出：[-7,-1,1,3,4]
+ * 解释：这些数组也是正确的 [-5,-1,1,2,3]，[-3,-1,2,-2,4]。
+ *
+ * 示例 2：
+ * 输入：n = 3
+ * 输出：[-1,0,1]
+ *
+ * 示例 3：
+ * 输入：n = 1
+ * 输出：[0]
+ *
+ * 提示：
+ * 1 <= n <= 1000
+ * */
+const sumZero = (n) => {
+    const res = [];
+    let left = Math.ceil(n / 2), right = n - left;
+    let flag = left === right;
+    for (let i = 1; flag ?  i <= left : i < left; i++) {
+        res.push(i, -i);
+    }
+    if (flag) return res
+    return flag ? res : [...res, 0];
+};
+console.log(sumZero(4));
