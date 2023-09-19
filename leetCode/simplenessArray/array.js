@@ -4058,3 +4058,60 @@ const checkIfExist = (arr) => {
     return false;
 };
 // console.log(checkIfExist([-2,0,10,-19,4,6,-8]))
+
+/**
+ * 1351. 统计有序矩阵中的负数
+ *
+ * 给你一个 m * n 的矩阵 grid，矩阵中的元素无论是按行还是按列，都以非递增顺序排列。 请你统计并返回 grid 中 负数 的数目。
+ *
+ * 示例 1：
+ * 输入：grid = [[4,3,2,-1],[3,2,1,-1],[1,1,-1,-2],[-1,-1,-2,-3]]
+ * 输出：8
+ * 解释：矩阵中共有 8 个负数。
+ *
+ * 示例 2：
+ * 输入：grid = [[3,2],[1,0]]
+ * 输出：0
+ *
+ * 提示：
+ * m == grid.length
+ * n == grid[i].length
+ * 1 <= m, n <= 100
+ * -100 <= grid[i][j] <= 100
+ * */
+const countNegatives = (grid) => {
+    // let arr = grid.flat();
+    // return arr.filter(item => item < 0).length
+
+    let rowLength = grid[0].length;
+    let right = rowLength - 1;
+    let sum = 0;
+
+    // 因为 grid[i] 中的元素都是递减的，所以该方法返回 grid[i] 中的第一个小于零元素的索引
+    const searchTarget = function (arr, right) {
+        let left = 0;
+        if (right > arr.length - 1) right = arr.length - 1;
+        while (left <= right) {
+            let mid = Math.floor((left + right) / 2);
+            if (arr[mid] < 0) {
+                right = mid  - 1;
+            } else if (arr[mid] >= 0) {
+                left = mid + 1;
+            }
+        }
+        return left;
+    }
+
+    for (let rowIndex = 0; rowIndex < grid.length; rowIndex++) {
+        let index = searchTarget(grid[rowIndex], right);
+        right = index;
+        if (right === 0) {
+            sum += (grid.length - rowIndex) * rowLength
+        } else {
+            sum += rowLength - index;
+        }
+    }
+    return sum;
+};
+// console.log(countNegatives([[4,3,2,-1],[3,2,1,-1],[1,1,-1,-2],[-1,-1,-2,-3]]))
+console.log(countNegatives([[1,1,-2,-3]]))
