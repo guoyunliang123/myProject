@@ -3826,7 +3826,7 @@ const sumZero = (n) => {
     const res = [];
     let left = Math.ceil(n / 2), right = n - left;
     let flag = left === right;
-    for (let i = 1; flag ?  i <= left : i < left; i++) {
+    for (let i = 1; flag ? i <= left : i < left; i++) {
         res.push(i, -i);
     }
     if (flag) return res
@@ -3862,7 +3862,7 @@ const sumZero = (n) => {
 const decompressRLElist = (nums) => {
     let res = [];
     for (let i = 0; i < nums.length; i += 2) {
-       let arr = new Array(nums[i]).fill(nums[i + 1])
+        let arr = new Array(nums[i]).fill(nums[i + 1])
         res.push(...arr)
     }
     return res;
@@ -3989,7 +3989,7 @@ const kWeakestRows = (mat, k) => {
     }
     const arr = Array.from(map.values()).sort((a, b) => a - b)
     for (let i = 0; i < arr.length; i++) {
-        map.forEach(function(value, k) {
+        map.forEach(function (value, k) {
             if (value === arr[i] && res.indexOf(k) === -1) {
                 res.push(k)
             }
@@ -4094,7 +4094,7 @@ const countNegatives = (grid) => {
         while (left <= right) {
             let mid = Math.floor((left + right) / 2);
             if (arr[mid] < 0) {
-                right = mid  - 1;
+                right = mid - 1;
             } else if (arr[mid] >= 0) {
                 left = mid + 1;
             }
@@ -4114,4 +4114,91 @@ const countNegatives = (grid) => {
     return sum;
 };
 // console.log(countNegatives([[4,3,2,-1],[3,2,1,-1],[1,1,-1,-2],[-1,-1,-2,-3]]))
-console.log(countNegatives([[1,1,-2,-3]]))
+// console.log(countNegatives([[1,1,-2,-3]]))
+
+/**
+ * 1356. 根据数字二进制下 1 的数目排序
+ *
+ * 给你一个整数数组 arr 。请你将数组中的元素按照其二进制表示中数字 1 的数目升序排序。
+ *
+ * 如果存在多个数字二进制中 1 的数目相同，则必须将它们按照数值大小升序排列。
+ *
+ * 请你返回排序后的数组。
+ *
+ * 示例 1：
+ * 输入：arr = [0,1,2,3,4,5,6,7,8]
+ * 输出：[0,1,2,4,8,3,5,6,7]
+ * 解释：[0] 是唯一一个有 0 个 1 的数。
+ * [1,2,4,8] 都有 1 个 1 。
+ * [3,5,6] 有 2 个 1 。
+ * [7] 有 3 个 1 。
+ * 按照 1 的个数排序得到的结果数组为 [0,1,2,4,8,3,5,6,7]
+ *
+ * 示例 2：
+ * 输入：arr = [1024,512,256,128,64,32,16,8,4,2,1]
+ * 输出：[1,2,4,8,16,32,64,128,256,512,1024]
+ * 解释：数组中所有整数二进制下都只有 1 个 1 ，所以你需要按照数值大小将它们排序。
+ *
+ * 示例 3：
+ * 输入：arr = [10000,10000]
+ * 输出：[10000,10000]
+ *
+ * 示例 4：
+ * 输入：arr = [2,3,5,7,11,13,17,19]
+ * 输出：[2,3,5,17,7,11,13,19]
+ *
+ * 示例 5：
+ * 输入：arr = [10,100,1000,10000]
+ * 输出：[10,100,10000,1000]
+ *
+ * 提示：
+ * 1 <= arr.length <= 500
+ * 0 <= arr[i] <= 10^4
+ * */
+const sortByBits = (arr) => {
+    // 方法1：
+    // let arrList = [];
+    // for (let i = 0; i < arr.length; i++) {
+    //     const tag = parseInt(arr[i]).toString(2);
+    //     let len = tag.split("1").length - 1
+    //     arrList.push({len: len, num: arr[i]})
+    // }
+    //
+    // // 可按照多个属性进行排序
+    // const multiSort = (array, ...compares) => {
+    //     return array.sort((a, b) => {
+    //         for (const c of compares) {
+    //             const r = c(a, b)
+    //             if (r !== 0) {
+    //                 return r
+    //             }
+    //         }
+    //     })
+    // }
+    // let list = multiSort(arrList, (a, b) => a.len - b.len, (a, b) => a.num - b.num)
+    // return list.map(item => {
+    //     return item.num
+    // })
+
+    // 方法2：
+    const countOne = (num) => {
+        let count = 0;
+        while (num > 0) {
+            // & 二进制都为 1 的时候是 1，其余都是 0
+            // &= 按位与赋值
+            // count 为 num 转为二进制后，1 的个数
+            num &= num - 1;
+            count += 1;
+        }
+        return count;
+    }
+
+    arr.sort((a, b) => {
+        const c1 = countOne(a), c2 = countOne(b);
+        if (c1 === c2) return a - b;
+        return c1 - c2;
+    })
+    return arr;
+};
+// console.log(sortByBits([1024, 512, 256, 128, 64, 32, 16, 8, 4, 2]))
+// console.log(sortByBits([0,1,2,3,4,5,6,7,8]))
