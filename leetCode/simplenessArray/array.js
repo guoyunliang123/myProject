@@ -4467,3 +4467,81 @@ const createTargetArray = (nums, index) => {
 }
 // console.log(createTargetArray([0,1,2,3,4], [0,1,2,2,1]))
 // console.log(createTargetArray([1], [0]))
+
+/**
+ * 1394. 找出数组中的幸运数
+ *
+ * 在整数数组中，如果一个整数的出现频次和它的数值大小相等，我们就称这个整数为「幸运数」。
+ *
+ * 给你一个整数数组 arr，请你从中找出并返回一个幸运数。
+ *
+ * 如果数组中存在多个幸运数，只需返回 最大 的那个。
+ * 如果数组中不含幸运数，则返回 -1 。
+ *
+ * 示例 1：
+ * 输入：arr = [2,2,3,4]
+ * 输出：2
+ * 解释：数组中唯一的幸运数是 2 ，因为数值 2 的出现频次也是 2 。
+ *
+ * 示例 2：
+ * 输入：arr = [1,2,2,3,3,3]
+ * 输出：3
+ * 解释：1、2 以及 3 都是幸运数，只需要返回其中最大的 3 。
+ *
+ * 示例 3：
+ * 输入：arr = [2,2,2,3,3]
+ * 输出：-1
+ * 解释：数组中不存在幸运数。
+ *
+ * 示例 4：
+ * 输入：arr = [5]
+ * 输出：-1
+ *
+ * 示例 5：
+ * 输入：arr = [7,7,7,7,7,7,7]
+ * 输出：7
+ *
+ * 提示：
+ * 1 <= arr.length <= 500
+ * 1 <= arr[i] <= 500
+ * */
+const findLucky = (arr) => {
+    // 方法1：
+    // let res = 0;
+    // let map = new Map();
+    // for (let i = 0; i < arr.length; i++) {
+    //     if (!map.has(arr[i])) {
+    //         map.set(arr[i], 1)
+    //     } else {
+    //         map.set(arr[i], map.get(arr[i]) + 1)
+    //     }
+    // }
+    // map.forEach((value, key) => {
+    //     if (value === key) {
+    //         res = Math.max(res, key)
+    //     }
+    // })
+    // return res === 0 ? -1 : res;
+
+    // 方法2：
+    // let res = 0;
+    // for (let i = 0; i < arr.length; i++) {
+    //     let x = arr.filter(item => item === arr[i]).length
+    //     if (x === arr[i]) {
+    //         res = Math.max(res, arr[i])
+    //     }
+    // }
+    // return res === 0 ? -1 : res;
+
+    // 方法3：
+    let res = -1;
+    const hash = {};
+    arr.forEach(v => hash[v] = (hash[v] || 0) + 1)
+    let a = Object.keys(hash).filter(v => hash[v] === v)
+    a.sort((b, c) => c - b)
+    if(a[0] === 'undefined') {
+        return -1
+    }
+    return a[0];
+};
+// console.log(findLucky([2,2,3,4]))
