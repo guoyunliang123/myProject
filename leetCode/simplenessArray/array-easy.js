@@ -5314,3 +5314,72 @@ const canMakeArithmeticProgression = (arr) => {
     return true;
 };
 // console.log(canMakeArithmeticProgression([1, 3, 5]))
+
+/**
+ * 1512. 好数对的数目
+ *
+ * 给你一个整数数组 nums 。
+ *
+ * 如果一组数字 (i,j) 满足 nums[i] == nums[j] 且 i < j ，就可以认为这是一组 好数对 。
+ *
+ * 返回好数对的数目。
+ *
+ * 示例 1：
+ * 输入：nums = [1,2,3,1,1,3]
+ * 输出：4
+ * 解释：有 4 组好数对，分别是 (0,3), (0,4), (3,4), (2,5) ，下标从 0 开始
+ *
+ * 示例 2：
+ * 输入：nums = [1,1,1,1]
+ * 输出：6
+ * 解释：数组中的每组数字都是好数对
+ *
+ * 示例 3：
+ * 输入：nums = [1,2,3]
+ * 输出：0
+ *
+ * 提示：
+ * 1 <= nums.length <= 100
+ * 1 <= nums[i] <= 100
+ * */
+const numIdenticalPairs = (nums) => {
+    // 方法1：
+    // let map = new Map();
+    // for (let i = 0; i < nums.length; i++) {
+    //     if (!map.has(nums[i])) {
+    //         map.set(nums[i], 1)
+    //     } else {
+    //         map.set(nums[i], map.get(nums[i]) + 1)
+    //     }
+    // }
+    // let arr = [];
+    // map.forEach((val, keys) => {
+    //     if (val >= 2) {
+    //         arr.push(val)
+    //     }
+    // })
+    // if (arr.length === 0) return 0;
+    // let res = 0;
+    // // 总结出来的公式
+    // for (let i = 0; i < arr.length; i++) {
+    //     let count = 0;
+    //     if (arr[i] % 2 === 0) {
+    //         count += arr[i] * arr[i] / 2 - arr[i] / 2
+    //     } else {
+    //         count += Math.floor(arr[i] / 2) * arr[i]
+    //     }
+    //     res += count;
+    // }
+    // return res;
+
+    // 方法2：
+    let count = new Array(101).fill(0)
+    let res = 0;
+    for (const n of nums) {
+        res += count[n];
+        count[n]++;
+    }
+    return res;
+};
+// console.log(numIdenticalPairs([1, 2, 3, 1, 1, 3]))
+// console.log(numIdenticalPairs([1,1,1,1]))
