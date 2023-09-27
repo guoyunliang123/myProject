@@ -5479,3 +5479,65 @@ const countGoodTriplets = (arr, a, b, c) => {
     return res;
 };
 // console.log(countGoodTriplets([3, 0, 1, 1, 9, 7], 7, 2, 3))
+
+/**
+ * 1539. 第 K 个缺失的正整数
+ *
+ * 给你一个 严格升序排列 的正整数数组 arr 和一个整数 k 。
+ *
+ * 请你找到这个数组里第 k 个缺失的正整数。
+ *
+ * 示例 1：
+ * 输入：arr = [2,3,4,7,11], k = 5
+ * 输出：9
+ * 解释：缺失的正整数包括 [1,5,6,8,9,10,12,13,...] 。第 5 个缺失的正整数为 9 。
+ *
+ * 示例 2：
+ * 输入：arr = [1,2,3,4], k = 2
+ * 输出：6
+ * 解释：缺失的正整数包括 [5,6,7,...] 。第 2 个缺失的正整数为 6 。
+ *
+ * 提示：
+ * 1 <= arr.length <= 1000
+ * 1 <= arr[i] <= 1000
+ * 1 <= k <= 1000
+ * 对于所有 1 <= i < j <= arr.length 的 i 和 j 满足 arr[i] < arr[j]
+ * */
+const findKthPositive = (arr, k) => {
+    // 方法1：
+    // const len = arr.length;
+    // const x = arr[len - 1];
+    // const y = [];
+    // for (let i = 1; i <= x + 1; i++) {
+    //     if (arr.indexOf(i) === -1) {
+    //         y.push(i)
+    //     }
+    // };
+    // return k > y.length ? y[y.length - 1] + k - y.length : y[k - 1]
+
+    // 方法2：
+    // const sum = arr.length + k;
+    // for (let i = 1; i < sum + 1; i++) {
+    //     if (!arr.includes(i)) {
+    //         k--
+    //     }
+    //     if (k === 0) {
+    //         return i
+    //     }
+    // }
+
+    // 方法3：
+    // let l = 0, r = arr.length - 1, m;
+    // while (l < r) {
+    //     m = Math.floor((l + r) / 2);
+    //     console.log(m)
+    //     if (arr[m] - m - 1 < k) {
+    //         l = m + 1;
+    //     } else {
+    //         r = m
+    //     }
+    // }
+    // return l + k;
+};
+// console.log(findKthPositive([2, 3, 4, 7, 11], 5))
+// console.log(findKthPositive([7, 8, 9, 10], 5))
