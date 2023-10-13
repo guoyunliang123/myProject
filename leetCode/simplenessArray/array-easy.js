@@ -5670,7 +5670,7 @@ const containsPattern = (arr, m, k) => {
  * 1 <= n <= 100
  * 1 <= mat[i][j] <= 100
  * */
-const  diagonalSum = (mat) => {
+const diagonalSum = (mat) => {
     // 方法1：
     // let len = mat.length;
     // let count = 0;
@@ -5689,8 +5689,73 @@ const  diagonalSum = (mat) => {
     let sum = 0;
     for (let i = 0; i < n; i++) {
         sum += mat[i][i] + mat[i][n - 1 - i];
-        if (i === n - 1- i) sum -= mat[i][i];
+        if (i === n - 1 - i) sum -= mat[i][i];
     }
     return sum;
 };
-console.log(diagonalSum([[1,2,3],[4,5,6],[7,8,9]]))
+// console.log(diagonalSum([[1,2,3],[4,5,6],[7,8,9]]))
+
+/**
+ * 1582. 二进制矩阵中的特殊位置
+ *
+ * 给你一个大小为 rows x cols 的矩阵 mat，其中 mat[i][j] 是 0 或 1，请返回 矩阵 mat 中特殊位置的数目 。
+ *
+ * 特殊位置 定义：如果 mat[i][j] == 1 并且第 i 行和第 j 列中的所有其他元素均为 0（行和列的下标均 从 0 开始 ），则位置 (i, j) 被称为特殊位置。
+ *
+ * 示例 1：
+ * 输入：mat = [[1,0,0],
+ *             [0,0,1],
+ *             [1,0,0]]
+ * 输出：1
+ * 解释：(1,2) 是一个特殊位置，因为 mat[1][2] == 1 且所处的行和列上所有其他元素都是 0
+ *
+ * 示例 2：
+ * 输入：mat = [[1,0,0],
+ *             [0,1,0],
+ *             [0,0,1]]
+ * 输出：3
+ * 解释：(0,0), (1,1) 和 (2,2) 都是特殊位置
+ *
+ * 示例 3：
+ * 输入：mat = [[0,0,0,1],
+ *             [1,0,0,0],
+ *             [0,1,1,0],
+ *             [0,0,0,0]]
+ * 输出：2
+ *
+ * 示例 4：
+ * 输入：mat = [[0,0,0,0,0],
+ *             [1,0,0,0,0],
+ *             [0,1,0,0,0],
+ *             [0,0,1,0,0],
+ *             [0,0,0,1,1]]
+ * 输出：3
+ *
+ * 提示：
+ * rows == mat.length
+ * cols == mat[i].length
+ * 1 <= rows, cols <= 100
+ * mat[i][j] 是 0 或 1
+ * */
+const numSpecial = (mat) => {
+    let sum = 0;
+    let len = mat.length;
+    for (let i = 0; i < len; i++) {
+        let count = len;
+        const idx = mat[i].indexOf(1);
+        const lastIdx = mat[i].lastIndexOf(1);
+        if (idx !== -1 && idx === lastIdx) {
+            for (let j = 0; j < len; j++) {
+                if (mat[j][idx] === 0) {
+                    count--;
+                }
+            }
+        }
+        if (count === 1) {
+            sum++
+        }
+    }
+    return sum;
+};
+console.log(numSpecial([[0,0,1,0],[0,0,0,0],[0,0,0,0],[0,1,0,0]]))
+console.log(numSpecial([[0, 0, 0, 1], [1, 0, 0, 0], [0, 1, 1, 0], [0, 0, 0, 0]]))
