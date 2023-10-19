@@ -5757,5 +5757,67 @@ const numSpecial = (mat) => {
     }
     return sum;
 };
-console.log(numSpecial([[0,0,1,0],[0,0,0,0],[0,0,0,0],[0,1,0,0]]))
-console.log(numSpecial([[0, 0, 0, 1], [1, 0, 0, 0], [0, 1, 1, 0], [0, 0, 0, 0]]))
+// console.log(numSpecial([[0,0,1,0],[0,0,0,0],[0,0,0,0],[0,1,0,0]]))
+// console.log(numSpecial([[0, 0, 0, 1], [1, 0, 0, 0], [0, 1, 1, 0], [0, 0, 0, 0]]))
+
+/**
+ * 1588. 所有奇数长度子数组的和
+ *
+ * 给你一个正整数数组 arr ，请你计算所有可能的奇数长度子数组的和。
+ *
+ * 子数组 定义为原数组中的一个连续子序列。
+ *
+ * 请你返回 arr 中 所有奇数长度子数组的和 。
+ *
+ * 示例 1：
+ * 输入：arr = [1,4,2,5,3]
+ * 输出：58
+ * 解释：所有奇数长度子数组和它们的和为：
+ * [1] = 1
+ * [4] = 4
+ * [2] = 2
+ * [5] = 5
+ * [3] = 3
+ * [1,4,2] = 7
+ * [4,2,5] = 11
+ * [2,5,3] = 10
+ * [1,4,2,5,3] = 15
+ * 我们将所有值求和得到 1 + 4 + 2 + 5 + 3 + 7 + 11 + 10 + 15 = 58
+ *
+ * 示例 2：
+ * 输入：arr = [1,2]
+ * 输出：3
+ * 解释：总共只有 2 个长度为奇数的子数组，[1] 和 [2]。它们的和为 3 。
+ *
+ * 示例 3：
+ * 输入：arr = [10,11,12]
+ * 输出：66
+ *
+ * 提示：
+ * 1 <= arr.length <= 100
+ * 1 <= arr[i] <= 1000
+ * */
+const sumOddLengthSubarrays = (arr) => {
+    // 方法1：
+    // let output = 0;
+    // const len = arr.length;
+    // for (let i = 0; i < len; i++) {
+    //     let left = i + 1,
+    //         right = len - i,
+    //         left_odd = Math.floor((left + 1) / 2),
+    //         left_even = Math.floor(left / 2),
+    //         right_odd = Math.floor((right + 1) / 2),
+    //         right_even = Math.floor(right / 2);
+    //     output += (left_even * right_even+ left_odd * right_odd) * arr[i];
+    // }
+    // return output;
+
+    // 方法2：
+    let res = 0, len = arr.length;
+    for (let i = 0; i < len; i++) {
+        // res += Math.floor(((i + 1) * (len - 1) + 1) / 2) * arr[i];
+        res += Math.floor(((i + 1) * (len - i) + 1) / 2) * arr[i];
+    }
+    return res;
+};
+console.log(sumOddLengthSubarrays([1, 4, 2, 5, 3]))
